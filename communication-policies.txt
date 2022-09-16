@@ -1,0 +1,6 @@
+1. Discord is our maine source of communication. Zoom is our backup
+2. Reply within 2-3 hours to messages on discord during prime time work hours(10-6), if after 6 then it's acceptable to respond the next morning
+3. Don't use @everyone because it notifies everyone in the class. You can @team-members when beginnning a conversation relevant to everyone or
+   posting a notice for a meeting time
+4. Anyone can answer general coding questions in the chat even if they're directed to one person, but if someone asks a question about the intent of
+   someone's code, the person who made that code is the one who should answer
