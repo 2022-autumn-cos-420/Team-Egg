@@ -14,13 +14,13 @@ Creating user-friendly platforms for student collaboration and discussion
 
 
 ## Problem Statement
-Students may find it difficult to blindly walk into an elective they don't know much about, commit to the course and credits, then find themselves wanting to drop after they realize the course isn't what they thought. 
+Students may find it difficult to walk into an elective they don't know much about. They might find themselves committing to the course and credits, then wanting to drop when they realize the course is far more complicated, overwhelming, or not suited to their learning style (Online classes, synchronous, asynchronous, etc). 
 
-Dropping courses can lead to severe consequences such as; 
+Dropping courses can lead to severe consequences such as;
+
 - Losing a scholarship that requires you take a certain number of credit hours if you are unable to replace the dropped course due to class availability or scheduling conflict.
 - Losing money spent on the course if dropped after the refund date.
 - A black mark on your GPA if dropped with a withdrawal-fail.
 - Falling behind on your degree and needing to make it up on a later semester or be forced to take another semester before graduating.
 
-Advice or experiences you’ve heard from peers who have already taken the course are usually what you have to rely on. Advisors can always give out advice regarding course loads and descriptions but they can only offer their perspective from an advisor or instructor position most of the time. How can we build a reliable and organized knowledgebase of student feedback that other students can search through without having to personally know each other?
-
+Advice or experiences you’ve heard from peers are the best source of feedback to help make an informed decision about how well you will handle the course. Advisors can always give out advice regarding course loads and descriptions but they can only offer their perspective from an advisor or instructor position. How can we build a reliable and organized student-led knowledge-base regarding difficulty, pacing, work load, enjoyment and relevancy to solve the ignorance students are experiencing when picking a course?
