@@ -5,7 +5,6 @@
 - Troy Schotter: PM
 - Graham Bridges: Developer
 - Brennan Poitras: Developer
-- Sean Whynot: Developer
 - Owen Bellew: Designer
 
 ## Mission Statement
