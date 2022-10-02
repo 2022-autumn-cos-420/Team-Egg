@@ -11,6 +11,7 @@ class App extends Component {
         this.state = { apiResponse: "" };
     }
 
+    //Attempts to talk to api server, on server version this needs to contact "www.terratoast.net", not localhost.
     callAPI() {
         fetch("http://localhost:7080/testAPI")
             .then(res => res.text())
@@ -23,7 +24,7 @@ class App extends Component {
         this.callAPI();
     }
 
-    
+    //Renders app
     render() {
         return (
             <div className="App">
