@@ -4,8 +4,9 @@
     "\\api",
     "\\api\\routes",
     "\\client",
+    "\\client\\public",
     "\\client\\src"
   ],
-  "SelectedNode": "\\api\\app.js",
+  "SelectedNode": "\\client\\package-lock.json",
   "PreviewInSolutionExplorer": false
 }
