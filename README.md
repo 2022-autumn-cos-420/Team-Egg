@@ -23,3 +23,11 @@ Dropping courses can lead to severe consequences such as;
 - Falling behind on your degree and needing to make it up on a later semester or be forced to take another semester before graduating.
 
 To make well informed decisions, a student could find another student like them who took the class, but existing solutions don’t facilitate that. Advisors give out advice regarding course loads and descriptions but they can only offer their perspective from an advisor or instructor position which can be insufficient for the specific student’s needs. How can we build a reliable and organized student-led knowledge-base regarding difficulty, pacing, work load, enjoyment, and relevancy to solve the ignorance students are experiencing when picking a course?
+
+## Blackbear Square Initial Setup
+ - Download Repository
+ - install node on machine. https://nodejs.org/en/download/
+ - run "npm install" in both client and api folders
+ - install postgresql https://www.postgresql.org/download/
+ - add postgres bin folder to PATH if on Windows
+ - run db_setup.sql with the command "psql -U postgres -f ./db_setup.sql"
