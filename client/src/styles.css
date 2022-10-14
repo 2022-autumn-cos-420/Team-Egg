@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+ }
+
+ body { 
+    margin: 0;
+ }
+
+ .nav {
+    background-color: #1c2e3f;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    min-height: 10vh;
+    text-align: center;
+ }
