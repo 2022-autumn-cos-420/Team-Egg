@@ -31,7 +31,9 @@ class App extends Component {
                 <header className="App-header">
                     <h1 className="App-title"> BlackBear Square </h1>
                 </header>
-                <p className="App-intro">{this.state.apiResponse }</p>
+                <p className="App-intro">{this.state.apiResponse }
+                    Enter School or University
+                </p>
             </div>
         );
     }
