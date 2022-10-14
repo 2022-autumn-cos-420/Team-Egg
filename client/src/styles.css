@@ -11,6 +11,26 @@
     color: white;
     display: flex;
     justify-content: space-between;
-    min-height: 10vh;
+    min-height: 15vh;
+    align-items: center;
+    gap: 2rem;
+    padding: 0 2rem;
+ }
+
+.site-title{
+    font-size: 2rem;
     text-align: center;
+}
+
+ .nav ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+ }
+
+ .nav a{
+    color: inherit;
+    text-decoration: none;
  }
