@@ -25,6 +25,7 @@ class App extends Component {
     }
 
     //Renders app
+    //Push to Git woohoo
     render() {
         return (
             <div className="App">
