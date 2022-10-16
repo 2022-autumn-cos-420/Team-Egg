@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import logo from './logo.svg';
 import './App.css';
+import Navbar from "./Navbar";
 
 class App extends Component { 
 
@@ -28,12 +29,11 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <header className="App-header">
-                    <h1 className="App-title"> BlackBear Square </h1>
-                </header>
+                <Navbar />
                 <p className="App-intro">{this.state.apiResponse }
                     Enter School or University
                 </p>
+
             </div>
         );
     }
