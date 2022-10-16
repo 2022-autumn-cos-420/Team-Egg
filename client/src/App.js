@@ -25,14 +25,15 @@ class App extends Component {
     }
 
     //Renders app
-    //Push to Git woohoo
     render() {
         return (
             <div className="App">
                 <header className="App-header">
                     <h1 className="App-title"> BlackBear Square </h1>
                 </header>
-                <p className="App-intro">{this.state.apiResponse }</p>
+                <p className="App-intro">{this.state.apiResponse }
+                    Enter School or University
+                </p>
             </div>
         );
     }
