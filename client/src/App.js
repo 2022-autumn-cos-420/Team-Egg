@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import logo from './logo.svg';
 import './App.css';
-import Navbar from "./Navbar";
-
+import Navbar from "./components/Navbar";
+import FindMatch from "./components/Findmatch";
 class App extends Component { 
 
     //Constructor calls the constructor of the Component, then sets the "state" to a default apiReponse so that the property exists
@@ -29,11 +28,13 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <Navbar />
+                <Navbar/>
                 <p className="App-intro">{this.state.apiResponse }
                     Enter School or University
                 </p>
-
+                <div>
+                    <FindMatch></FindMatch>
+                </div>
             </div>
         );
     }
