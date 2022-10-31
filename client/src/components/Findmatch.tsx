@@ -11,7 +11,7 @@ export default function FindMatch(): JSX.Element {
 
     return(
         <div>
-            <Button disabled = {inProg} onClick = {() => startMatch()}>Find a match</Button>
+            <Button className = "match-button" disabled = {inProg} onClick = {() => startMatch()}>Find a match</Button>
             {inProg && <div>What is your major?</div>}
         </div>
     );
