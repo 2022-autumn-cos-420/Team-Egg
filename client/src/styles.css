@@ -5,7 +5,11 @@
  body { 
     margin: 0;
  }
-
+ 
+ .App {
+   text-align: center;
+ }
+ 
  .nav {
     background-color: #1c2e3f;
     color: white;
@@ -47,6 +51,26 @@
  } 
 
  .match-button:hover {
+   background-color: #5959db;
+   color: white;
+ }
+
+ .next-button {
+   background-color: white;
+   border: 2px solid #5959db;
+   color: black;
+   padding: 15px 32px;
+   border-radius: 12px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 16px;
+   margin-top: 1cm;
+   transition-duration: 0.2s;
+   cursor: pointer;
+ }
+
+ .next-button:hover {
    background-color: #5959db;
    color: white;
  }

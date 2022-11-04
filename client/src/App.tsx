@@ -1,8 +1,8 @@
 import React from 'react';
-import './App.css';
 import Navbar from './components/Navbar';
 import FindMatch from './components/Findmatch';
-import './styles.css'
+import './styles.css';
+import './App.css';
 
 function App() {
   return (
