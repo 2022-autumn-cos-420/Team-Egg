@@ -1,9 +1,17 @@
-export default function Navbar(): JSX.Element {
-    return <nav className = "nav"> 
-        <a href = "/" className = "site-title"> BlackBear Square </a>
-        <ul>
-            <li><a href = "/login"> Log In</a></li>    
-            <li><a href = "/signup"> Sign Up</a></li>
-        </ul>
-    </nav>
+import React from "react";
+
+import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
+
+import  HomePage from "../pages/HomePage";
+
+
+
+export default function Navbar(){
+    return <Router>
+        <Link to="/">BlackBear Square</Link>
+        <Link to="/login">Log In</Link>
+        <Routes>
+            <Route path="/" element= {<HomePage></HomePage>}></Route>
+        </Routes>
+    </Router>
 }
