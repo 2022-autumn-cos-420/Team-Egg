@@ -6,6 +6,7 @@ import HomePage from "../pages/HomePage";
 import LogInPage from "../pages/LogInPage";
 import FindMatch from "./Findmatch";
 import CreateReview from "../pages/CreateReview";
+import logo from  "../images/bbsLogo.png";
 
 
 
@@ -13,10 +14,11 @@ export default function Navbar(){
     return <Router>
         <nav className="relative p-4 items-center 
         flex flex-col w-full justify-between min-w-fit
-        bg-black text-white">
+        bg-crt_BB_lightBlue text-white
+        whitespace-nowrap">
         <div className="flex flex-row items-cetner w-full justify-between">
-            <div className="min-w-fit">
-                <Link to="/">BlackBear Square</Link>{/*Logo Spot */}
+            <div className="min-w-fit mr-2">
+                <Link to="/"><img className="w-[50px]" src={logo} alt="BlackBearSquare Logo"></img></Link>{/*logo spot */}
             </div>
 
             {/*Menu items*/}
