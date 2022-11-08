@@ -1,0 +1,22 @@
+name: BBSquare Test
+
+on:
+  push:
+    branches: [main]
+  
+  
+jobs:
+  build_test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Nodejs 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - name: npm ci, test
+        working-directory: ./client
+        run: |
+          npm ci
+          npm test:cov
