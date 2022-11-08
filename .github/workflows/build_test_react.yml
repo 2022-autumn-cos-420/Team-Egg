@@ -19,4 +19,4 @@ jobs:
         working-directory: ./client
         run: |
           npm ci
-          npm run test:cov
+          npm run test:nowatch
