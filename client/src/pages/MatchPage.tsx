@@ -3,7 +3,8 @@ import { Button } from "react-bootstrap"
 
 export default function MatchPage(): JSX.Element {
     const [questionNumber, setQuestionNumber] = useState<number>(1);
-    
+    const [submitted, setSubmitted] = useState<boolean>(false);
+
     function nextQuestion(): void {
 
         setQuestionNumber(questionNumber + 1);
@@ -14,6 +15,11 @@ export default function MatchPage(): JSX.Element {
         setQuestionNumber(questionNumber - 1);
     }
 
+    function handleSubmit(): void {
+
+        nextQuestion();
+        setSubmitted(true);
+    }
     return (
     
     <div>
@@ -52,15 +58,9 @@ export default function MatchPage(): JSX.Element {
         </form>
         </div>
 
-        <Button className = "m-4 bg-crt_BB_lightBlue hover:bg-crt_BB_darkBlue text-white font-bold py-2 px-4 rounded-full" onClick = {() => previousQuestion()}>Previous</Button>
-        <Button className = "bg-crt_BB_lightBlue hover:bg-crt_BB_darkBlue text-white font-bold py-2 px-4 rounded-full" onClick = {() => nextQuestion()}>Next</Button>
-        
-        <div hidden = {questionNumber !== 4} className = "mt-8">
-        <form>
-            <input type="submit" value="Submit"/>
-        </form>
-        </div>
-
+        <Button hidden = {questionNumber === 1 || submitted === true} className = "m-4 bg-crt_BB_lightBlue hover:bg-crt_BB_darkBlue text-white font-bold py-2 px-4 rounded-full" onClick = {() => previousQuestion()}>Previous</Button>
+        <Button hidden = {questionNumber === 3 || submitted === true} className = "m-4 px-6 bg-crt_BB_lightBlue hover:bg-crt_BB_darkBlue text-white font-bold py-2 px-4 rounded-full" onClick = {() => nextQuestion()}>Next</Button>
+        <Button hidden = {questionNumber !== 3 || submitted === true} className = "px-6 bg-crt_BB_lightBlue hover:bg-crt_BB_darkBlue text-white font-bold py-2 px-4 rounded-full" onClick = {() => handleSubmit()}>Submit</Button>
 
     </div>
 
