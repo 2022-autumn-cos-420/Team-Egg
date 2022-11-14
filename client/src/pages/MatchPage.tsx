@@ -2,10 +2,17 @@ import React, { useState } from 'react'
 import { Button } from "react-bootstrap"
 
 export default function MatchPage(): JSX.Element {
+    const [questionNumber, setQuestionNumber] = useState<number>(1);
+    
+    function nextQuestion(): void {
+
+        setQuestionNumber(questionNumber + 1)
+    }
     return (
+    
     <div>
         
-        <div className = "mt-8">
+        <div hidden = {questionNumber !== 1} className = "mt-8">
         <p>Select 3 majors you are interested in.</p>
         <form>
             <input type="checkbox" id="COS" name="MajorType" value="COS"></input>
@@ -17,7 +24,7 @@ export default function MatchPage(): JSX.Element {
         </form>
     </div>
 
-        <div className = "mt-8">
+        <div hidden = {questionNumber !== 2} className = "mt-8">
         <p>How many hours are you willing to dedicate per week?</p>
         <form>
             <input type="radio" id="Less than 4" name="classHours" value="Less than 4"></input>
@@ -29,7 +36,7 @@ export default function MatchPage(): JSX.Element {
         </form>
         </div>
 
-        <div className = "mt-8">
+        <div hidden = {questionNumber !== 3} className = "mt-8">
         <p>Have you taken a class in --classname-- before?</p>
         <form>
             <input type="radio" id="Yes" name="takenClass" value="Yes"></input>
@@ -39,8 +46,9 @@ export default function MatchPage(): JSX.Element {
         </form>
         </div>
 
-        <div className = "mt-8">
-        <p>Have you taken a class in --classname-- before?</p>
+        <Button onClick = {() => nextQuestion()}>Next</Button>
+
+        <div hidden = {questionNumber !== 4} className = "mt-8">
         <form>
             <input type="submit" value="Submit"/>
         </form>
