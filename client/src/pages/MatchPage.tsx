@@ -6,8 +6,14 @@ export default function MatchPage(): JSX.Element {
     
     function nextQuestion(): void {
 
-        setQuestionNumber(questionNumber + 1)
+        setQuestionNumber(questionNumber + 1);
     }
+
+    function previousQuestion(): void {
+
+        setQuestionNumber(questionNumber - 1);
+    }
+
     return (
     
     <div>
@@ -46,8 +52,9 @@ export default function MatchPage(): JSX.Element {
         </form>
         </div>
 
-        <Button onClick = {() => nextQuestion()}>Next</Button>
-
+        <Button className = "m-4 bg-crt_BB_lightBlue hover:bg-crt_BB_darkBlue text-white font-bold py-2 px-4 rounded-full" onClick = {() => previousQuestion()}>Previous</Button>
+        <Button className = "bg-crt_BB_lightBlue hover:bg-crt_BB_darkBlue text-white font-bold py-2 px-4 rounded-full" onClick = {() => nextQuestion()}>Next</Button>
+        
         <div hidden = {questionNumber !== 4} className = "mt-8">
         <form>
             <input type="submit" value="Submit"/>
