@@ -8,23 +8,25 @@ export default function FindMatch(): JSX.Element {
     const questionsList = ["Question 1", "Question 2", "Question 3", "Question 4"]
 
 
-    function startMatch(): void {
+    function handleMatchClick(): void {
+        const matchButton = document.getElementById("match-button");
+        if(matchButton)
         setInProg(!inProg);
     }
 
-    function nextQuestion(): void {
-        if(questionIndex != questionsList.length -1){
+    function handleNextQuestionClick(): void {
+        if(questionIndex !== questionsList.length -1){
             setQuestionIndex(questionIndex + 1);
         }
     }
 
     return(
         <><div>
-            <Button className="match-button" disabled={inProg} onClick={() => startMatch()}>Find a match</Button>
-        </div>
-        
-        <div><Button className="next-button" disabled={!inProg} onClick={() => nextQuestion()}>Next Question</Button> 
+            <Button id="match-button" onClick={() => handleMatchClick()}>Find a match</Button>
+            {inProg &&
+        <div><Button id="next-button" onClick={() => handleNextQuestionClick()}>Next Question</Button> 
             {inProg && <div>{questionsList[questionIndex]}</div>}
+        </div>}
         </div></>
     );
 }
