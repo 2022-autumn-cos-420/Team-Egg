@@ -20,6 +20,7 @@ export default function MatchPage(): JSX.Element {
         nextQuestion();
         setSubmitted(true);
     }
+
     return (
     
     <div>
