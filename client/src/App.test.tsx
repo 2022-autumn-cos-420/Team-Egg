@@ -3,9 +3,9 @@ import { render, screen } from '@testing-library/react';
 import App from './App';
 
 describe("Test", () => { 
-    test('renders blackbear square text', () => {
+    test('renders Log In text', () => {
       render(<App />);
-      const linkElement = screen.getByText(/BlackBear Square/i);
+      const linkElement = screen.getByText(/Log In/i);
       expect(linkElement).toBeInTheDocument();
     });
     /*

@@ -23,6 +23,7 @@ export default function Navbar(){
 
             {/*Menu items*/}
             <div className="w-full flex italic justify-around text-2xl space-x-6">
+
                 <Link to="/login">Log In</Link>
                 <Link to="/matchtest">Match Test</Link>
                 <Link to="/createReviewTest">Create Review Test</Link>
