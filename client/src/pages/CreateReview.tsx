@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
 import { Button } from "react-bootstrap"
+import { Form } from "react-bootstrap";
 
 export default function CreateReview(): JSX.Element {
+    const [description, setDescription] = useState<string>('');
     const [visible, setVisible] = useState<boolean>(true);
     function flipVisibility(): void{
         setVisible(!visible);
     }
+    function updateDescription(event: React.ChangeEvent<HTMLTextAreaElement>) {
+        setDescription(event.target.value)
+      }
     return(
         <div>
             {visible && <div>
@@ -121,6 +126,35 @@ export default function CreateReview(): JSX.Element {
                         <input type="radio" id="Prefer Not to Say" name="completionStatus" value="Prefer Not to Say"></input>
                         <label htmlFor="Prefer Not to Say">Prefer Not to Say</label><br></br>
                     </form>
+                </div>
+
+                <div className ="mt-8">
+                    <p>What grade did you achieve in this course?</p>
+                    <form>
+                        <input type="radio" id="A" name="Grade" value="A"></input>
+                        <label htmlFor="A">A</label><br></br>
+                        <input type="radio" id="B" name="Grade" value="B"></input>
+                        <label htmlFor="B">B</label><br></br>
+                        <input type="radio" id="C" name="Grade" value="C"></input>
+                        <label htmlFor="C">C</label><br></br>
+                        <input type="radio" id="D" name="Grade" value="D"></input>
+                        <label htmlFor="D">D</label><br></br>
+                        <input type="radio" id="F" name="Grade" value="F"></input>
+                        <label htmlFor="F">F</label><br></br>
+                        <input type="radio" id="Prefer Not to Say" name="Grade" value="Prefer Not to Say"></input>
+                        <label htmlFor="Prefer Not to Say">Prefer Not to Say</label><br></br>
+                    </form>
+                </div>
+                
+                <div>
+                    <Form.Group controlId="formAdditionalComments">
+                        <Form.Label>Additional Comments</Form.Label>
+                        <Form.Control
+                        as="textarea"
+                        rows={5}
+                        value={description}
+                        onChange={updateDescription} />
+                    </Form.Group>
                 </div>
                 <Button onClick={flipVisibility}>Back</Button>
             </div>}
