@@ -26,27 +26,12 @@ export default function MatchPage(): JSX.Element {
     <div>
         
         <div hidden = {questionNumber !== 1} className = "mt-8">
-        <p>Select 3 majors you are interested in.</p>
-        <form>
-            <input type="checkbox" id="COS" name="MajorType" value="COS"></input>
-            <label htmlFor="COS">COS</label><br></br>
-            <input type="checkbox" id="MAT" name="MajorType" value="COS"></input>
-            <label htmlFor="MAT">MAT</label><br></br>
-            <input type="checkbox" id="ENG" name="MajorType" value="ENG"></input>
-            <label htmlFor="ENG">ENG</label><br></br>
-        </form>
+        CRAAAAAAAZY!!!!
     </div>
 
         <div hidden = {questionNumber !== 2} className = "mt-8">
         <p>How many hours are you willing to dedicate per week?</p>
-        <form>
-            <input type="radio" id="Less than 4" name="classHours" value="Less than 4"></input>
-            <label htmlFor="Less than 4">Less than 4</label><br></br>
-            <input type="radio" id="4-8" name="classHours" value="4-8"></input>
-            <label htmlFor="4-8">4-8</label><br></br>
-            <input type="radio" id="More than 8" name="classHours" value="More than 8"></input>
-            <label htmlFor="More than 8">More than 8</label><br></br>
-        </form>
+       MILLIONS!!!111 
         </div>
 
         <div hidden = {questionNumber !== 3} className = "mt-8">
