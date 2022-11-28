@@ -14,7 +14,7 @@ export default function CreateReview(): JSX.Element {
     return(
         <div>
             {visible && <div>
-                <div>To ensure that you answer honestly,you may choose your level of anonymity before posting this review</div>
+                <div className="text-xl italic">*To ensure that you answer honestly,you may choose your level of anonymity before posting this review</div>
            
                 <div className = "mt-8">
                     <p>How did the class meet for lectures?</p>
@@ -109,7 +109,9 @@ export default function CreateReview(): JSX.Element {
                         <label htmlFor="I really enjoyed taking this course">I really enjoyed taking this course</label><br></br>
                     </form>
                 </div>
-                <Button onClick={flipVisibility}>Next</Button>
+                <div className="text-right">
+                    <Button onClick={flipVisibility} className="m-4 bg-crt_BB_lightBlue hover:bg-crt_BB_darkBlue text-white font-bold py-2 px-4 rounded-full">Next</Button>
+                </div>
             </div>}
             {!visible && <div>
                 <div className = "mt-8">
@@ -156,7 +158,9 @@ export default function CreateReview(): JSX.Element {
                         onChange={updateDescription} />
                     </Form.Group>
                 </div>
-                <Button onClick={flipVisibility}>Back</Button>
+                <div className= "text-left">
+                    <Button onClick={flipVisibility} className= "m-4 bg-crt_BB_lightBlue hover:bg-crt_BB_darkBlue text-white font-bold py-2 px-4 rounded-full">Back</Button>
+                </div>
             </div>}
         </div>
     );
