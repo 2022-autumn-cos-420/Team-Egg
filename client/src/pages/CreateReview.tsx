@@ -148,15 +148,31 @@ export default function CreateReview(): JSX.Element {
                     </form>
                 </div>
                 
-                <div>
-                    <Form.Group controlId="formAdditionalComments">
-                        <Form.Label>Additional Comments</Form.Label>
-                        <Form.Control
-                        as="textarea"
-                        rows={5}
-                        value={description}
-                        onChange={updateDescription} />
-                    </Form.Group>
+                <div className="flex justify-center mt-8">
+                     <div className="mb-3 xl:w-96">
+                        <label htmlFor="exampleFormControlTextarea1" className="form-label inline-block mb-2 text-gray-700">Additional Comments</label>
+                            <textarea
+                                className="
+                                form-control
+                                block
+                                w-full
+                                px-3
+                                py-1.5
+                                text-base
+                                font-normal
+                                text-gray-700
+                                bg-white bg-clip-padding
+                                border border-solid border-gray-300
+                                rounded
+                                transition
+                                ease-in-out
+                                m-0
+                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                id="exampleFormControlTextarea1"
+                                rows={3}
+                                placeholder="Your Comments Here"
+                            ></textarea>
+                    </div>
                 </div>
                 <div className= "text-left">
                     <Button onClick={flipVisibility} className= "m-4 bg-crt_BB_lightBlue hover:bg-crt_BB_darkBlue text-white font-bold py-2 px-4 rounded-full">Back</Button>
