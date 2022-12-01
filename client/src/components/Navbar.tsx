@@ -17,7 +17,14 @@ function logout({setIsAuth}: {setIsAuth: (isAuth: boolean) => void}){
     signOut(auth);
 }
 
+function SignedInMessage({isAuth} : {isAuth: boolean}){
+    return <div data-testid="signedInMessage">
+    </div>
+}
 
+{/*{isAuth ?
+                <div className="text-sm absolute right-5 bottom-1">Signed in as {auth.currentUser?.displayName}</div> 
+: "Not Signed in"} */}
 
 export default function Navbar(){
     const [isAuth, setIsAuth] = useState<boolean>(false);
@@ -54,9 +61,7 @@ export default function Navbar(){
                     logout({setIsAuth});
                 }} to="/">Log Out</Link>
                 }
-                {isAuth ?
-                <div className="text-sm absolute right-5 bottom-1">Signed in as {auth.currentUser?.displayName}</div> 
-                : ""}
+                <SignedInMessage isAuth={isAuth}/>
             </div>
         </div>
         </nav>
