@@ -17,8 +17,9 @@ function logout({setIsAuth}: {setIsAuth: (isAuth: boolean) => void}){
     signOut(auth);
 }
 
-function SignedInMessage({isAuth} : {isAuth: boolean}){
-    return <div data-testid="signedInMessage">
+export function SignedInMessage({isAuth , currentUser} : {isAuth: boolean, currentUser: string | null | undefined}){
+    return <div data-testid="signedInMessage" className="text-sm absolute right-5 bottom-1">
+        {isAuth? `Signed in as ${currentUser}`: "Not Signed In"}
     </div>
 }
 
@@ -61,7 +62,7 @@ export default function Navbar(){
                     logout({setIsAuth});
                 }} to="/">Log Out</Link>
                 }
-                <SignedInMessage isAuth={isAuth}/>
+                <SignedInMessage isAuth={isAuth} currentUser={auth.currentUser?.displayName}/>
             </div>
         </div>
         </nav>
