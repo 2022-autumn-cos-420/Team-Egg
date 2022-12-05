@@ -41,13 +41,11 @@ export async function firebaseUser({auth, setUserData}: {auth: Auth, setUserData
 }
 
 
-function LoginWithGoogle({setIsAuth, setUserData, navigate} : {
-    setIsAuth: (isAuth: boolean) => void,
+function LoginWithGoogle({setUserData, navigate} : {
     setUserData: (userData: User|null) => void,
     navigate: NavigateFunction}){
     signInWithPopup(auth, provider).then((result) => {
         localStorage.setItem("isAuth","true");
-        setIsAuth(true);
         firebaseUser({auth, setUserData}).then((result) => {
             console.log("User Set");
             console.log(auth.currentUser?.uid);
@@ -57,10 +55,10 @@ function LoginWithGoogle({setIsAuth, setUserData, navigate} : {
 }
 
 
-function LoginLink({isAuth, setIsAuth, setUserData} : {isAuth: boolean, setIsAuth: (isAuth: boolean) => void, setUserData: (userData: User | null) => void}){
+function LoginLink({setUserData} : {setUserData: (userData: User | null) => void}){
     let navigate = useNavigate();
     return <div className="cursor-pointer" onClick={() =>{
-        LoginWithGoogle({setIsAuth, setUserData, navigate});
+        LoginWithGoogle({setUserData, navigate});
     }}>
         Log In
     </div>

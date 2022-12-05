@@ -16,28 +16,25 @@ import LoginLink, {firebaseUser} from "./LoginLink";
 import {User} from "../interfaces/User";
 
 
-function logout({setIsAuth, setUserData}: {setIsAuth: (isAuth: boolean) => void, setUserData: (userData: User | null) => void}){
+function logout(){
     signOut(auth);
 }
 
-export function SignedInMessage({isAuth , currentUser} : {isAuth: boolean, currentUser: string | null | undefined}){
+export function SignedInMessage({currentUser} : {currentUser: User | null}){
     return <div data-testid="signedInMessage" className="text-sm absolute right-5 bottom-1">
-        {isAuth? `Signed in as ${currentUser}`: "Not Signed In"}
+        {currentUser? `Signed in as ${currentUser.name}`: "Not Signed In"}
     </div>
 }
 
 export default function Navbar(){
-    const [isAuth, setIsAuth] = useState<boolean>(false);
     const [userData, setUserData]= useState<User|null>(null)
 
     onAuthStateChanged(auth, (user) => {
         if(user){
             localStorage.setItem("isAuth","true");
-            setIsAuth(true);
             firebaseUser({auth, setUserData})
         } else {
             localStorage.clear();
-            setIsAuth(false);
             setUserData(null);
         }
     });
@@ -56,14 +53,14 @@ export default function Navbar(){
             <div className="w-full flex italic justify-around text-2xl space-x-6">
                 <Link to="/matchtest">Match Test</Link>
                 <Link to="/createReviewTest">Create Review Test</Link>
-                {isAuth ? <Link to="/profile">Profile</Link> : ""}
-                {!isAuth ? 
-                <LoginLink isAuth={isAuth} setIsAuth={setIsAuth} setUserData={setUserData}></LoginLink> :
+                {userData ? <Link to="/profile">Profile</Link> : ""}
+                {!userData ? 
+                <LoginLink setUserData={setUserData}></LoginLink> :
                 <Link onClick={()=> {
-                    logout({setIsAuth, setUserData});
+                    logout();
                 }} to="/">Log Out</Link>
                 }
-                <SignedInMessage isAuth={isAuth} currentUser={auth.currentUser?.displayName}/>
+                <SignedInMessage currentUser={userData}/>
             </div>
         </div>
         </nav>
