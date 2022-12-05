@@ -13,8 +13,11 @@ import MatchPage from "../pages/MatchPage";
 import ProfilePage from "../pages/ProfilePage";
 import LoginLink from "./LoginLink";
 
+import {User} from "../interfaces/User";
 
-function logout({setIsAuth}: {setIsAuth: (isAuth: boolean) => void}){
+
+function logout({setIsAuth, setUserData}: {setIsAuth: (isAuth: boolean) => void, setUserData: (userData: User | null) => void}){
+    setUserData(null);
     signOut(auth);
 }
 
@@ -26,6 +29,7 @@ export function SignedInMessage({isAuth , currentUser} : {isAuth: boolean, curre
 
 export default function Navbar(){
     const [isAuth, setIsAuth] = useState<boolean>(false);
+    const [userData, setUserData]= useState<User|null>(null)
 
     onAuthStateChanged(auth, (user) => {
         if(user){
@@ -53,9 +57,9 @@ export default function Navbar(){
                 <Link to="/createReviewTest">Create Review Test</Link>
                 {isAuth ? <Link to="/profile">Profile</Link> : ""}
                 {!isAuth ? 
-                <LoginLink isAuth={isAuth} setIsAuth={setIsAuth}></LoginLink> :
+                <LoginLink isAuth={isAuth} setIsAuth={setIsAuth} setUserData={setUserData}></LoginLink> :
                 <Link onClick={()=> {
-                    logout({setIsAuth});
+                    logout({setIsAuth, setUserData});
                 }} to="/">Log Out</Link>
                 }
                 <SignedInMessage isAuth={isAuth} currentUser={auth.currentUser?.displayName}/>
