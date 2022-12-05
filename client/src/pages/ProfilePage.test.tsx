@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import ProfilePage from './ProfilePage'
 import {User} from "../interfaces/User";
+import { BrowserRouter } from 'react-router-dom';
 
 describe("Profile Tests", () => {
 
@@ -47,7 +48,7 @@ describe("Profile Tests", () => {
         expect(x).toBeInTheDocument();
     });
     test("Renders the createCourseLink component if the user has enough access level", () => {
-        render(<ProfilePage currentUser={SuperUser}/>);
+        render(<BrowserRouter><ProfilePage currentUser={SuperUser}/></BrowserRouter>);
         const x = screen.getByTestId("createCourseLink");
         expect(x).toBeInTheDocument();
     });

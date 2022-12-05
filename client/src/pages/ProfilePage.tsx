@@ -1,7 +1,7 @@
 import { Auth } from 'firebase/auth';
 import React, {useEffect, useState} from 'react';
 
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {db} from "../firebase-config";
 import { User } from '../interfaces/User';
 
@@ -25,7 +25,7 @@ export function ProfileContent({currentUser} : {currentUser : User | null}){
 }
 
 function CreateCourseLink({currentUser} : {currentUser: User | null}){
-    return <div data-testid="createCourseLink">Create Course</div> 
+    return <Link data-testid="createCourseLink" to="/createCourse"></Link> 
 
 }
 
