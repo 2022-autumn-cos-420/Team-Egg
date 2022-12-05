@@ -1,11 +1,18 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import {User} from "../interfaces/User";
 import NavBar, { SignedInMessage } from './Navbar';
-import {auth} from "../firebase-config";
 jest.mock("../firebase-config");
 
 
 describe("NavBar Tests", () => {
+    const nonUser : User | null = null;
+    const johnUser : User | null = {
+        displayname: "John Doe",
+        email: "fakeemail@email.com",
+        uid: "abc"
+    }
+
     afterAll(() => {
         jest.resetAllMocks();
       });
@@ -17,14 +24,14 @@ describe("NavBar Tests", () => {
     });
 
     test("Renders that the user is not signed in", () => {
-        render(<SignedInMessage isAuth={false} currentUser={null}/>);
+        render(<SignedInMessage isAuth={false} user={nonUser}/>);
 
         const x = screen.getByTestId("signedInMessage");
         expect(x).toHaveTextContent("Not Signed In");
     });
 
     test("Renders the user's name when signed in", () => {
-        render(<SignedInMessage isAuth={true} currentUser={"John Doe"}/>);
+        render(<SignedInMessage isAuth={true} user={johnUser}/>);
         const x = screen.getByTestId("signedInMessage");
         expect(x).toHaveTextContent("Signed in as John Doe");
     });
