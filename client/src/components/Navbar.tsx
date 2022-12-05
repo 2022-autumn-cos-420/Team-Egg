@@ -3,7 +3,6 @@ import React, {useState} from "react";
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import {auth} from "../firebase-config";
 import {onAuthStateChanged, signOut} from 'firebase/auth';
-import {User} from "../interfaces/User";
 
 import HomePage from "../pages/HomePage";
 import LogInLink from "./LoginLink";
@@ -18,30 +17,23 @@ function logout({setIsAuth}: {setIsAuth: (isAuth: boolean) => void}){
     signOut(auth);
 }
 
-export function SignedInMessage({isAuth , user} : {isAuth: boolean, user: User | null}){
+export function SignedInMessage({isAuth , currentUser} : {isAuth: boolean, currentUser: string | null | undefined}){
     return <div data-testid="signedInMessage" className="text-sm absolute right-5 bottom-1">
-        {isAuth? `Signed in as ${user?.displayname}`: "Not Signed In"}
+        {isAuth? `Signed in as ${currentUser}`: "Not Signed In"}
     </div>
 }
 
 export default function Navbar(){
     const [isAuth, setIsAuth] = useState<boolean>(false);
-    let currentUser : User | null = null;
+
     
 
     onAuthStateChanged(auth, (user) => {
         if(user){
             localStorage.setItem("isAuth","true");
-            if (auth.currentUser != null)
-            currentUser = {
-                displayname: auth.currentUser.displayName,
-                email: auth.currentUser.email,
-                uid: auth.currentUser.uid
-            }
             setIsAuth(true);
         } else {
             localStorage.clear();
-            currentUser = null;
             setIsAuth(false);
         }
     });
@@ -66,7 +58,7 @@ export default function Navbar(){
                     logout({setIsAuth});
                 }} to="/">Log Out</Link>
                 }
-                <SignedInMessage isAuth={isAuth} user={currentUser}/>
+                <SignedInMessage isAuth={isAuth} currentUser={auth.currentUser?.displayName}/>
             </div>
         </div>
         </nav>
