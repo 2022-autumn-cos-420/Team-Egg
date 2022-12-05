@@ -18,7 +18,8 @@ async function createUser({auth, c}: {auth: Auth, c: CollectionReference<Documen
     await addDoc(c, u);
 }
 
-async function firebaseUser({auth, c, setUserData}: {auth: Auth, c: CollectionReference<DocumentData>, setUserData: (userData: User | null) => void}){
+export async function firebaseUser({auth, setUserData}: {auth: Auth, setUserData: (userData: User | null) => void}){
+    const c = collection(db, "StandardUser");
     const user = await getDocs(query(c, where("uid", "==", auth.currentUser?.uid)));
     let accessLevel :number = 0;
     if (user.size === 0){
@@ -34,7 +35,7 @@ async function firebaseUser({auth, c, setUserData}: {auth: Auth, c: CollectionRe
         uid: auth.currentUser.uid,
         eduEmail: auth.currentUser.email.endsWith(".edu"),
         preferences: [],
-        name: "",
+        name: auth.currentUser.displayName,
         accessLevel: accessLevel
     });
 }
@@ -44,11 +45,10 @@ function LoginWithGoogle({setIsAuth, setUserData, navigate} : {
     setIsAuth: (isAuth: boolean) => void,
     setUserData: (userData: User|null) => void,
     navigate: NavigateFunction}){
-    const c = collection(db, "StandardUser");
     signInWithPopup(auth, provider).then((result) => {
         localStorage.setItem("isAuth","true");
         setIsAuth(true);
-        firebaseUser({auth, c, setUserData}).then((result) => {
+        firebaseUser({auth, setUserData}).then((result) => {
             console.log("User Set");
             console.log(auth.currentUser?.uid);
         });

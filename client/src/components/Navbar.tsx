@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
-import {auth} from "../firebase-config";
+import {auth, db} from "../firebase-config";
 import {onAuthStateChanged, signOut} from 'firebase/auth';
 
 import HomePage from "../pages/HomePage";
@@ -11,7 +11,7 @@ import CreateReview from "../pages/CreateReview";
 import logo from  "../images/bbsLogo.png";
 import MatchPage from "../pages/MatchPage";
 import ProfilePage from "../pages/ProfilePage";
-import LoginLink from "./LoginLink";
+import LoginLink, {firebaseUser} from "./LoginLink";
 
 import {User} from "../interfaces/User";
 
@@ -34,6 +34,7 @@ export default function Navbar(){
         if(user){
             localStorage.setItem("isAuth","true");
             setIsAuth(true);
+            firebaseUser({auth, setUserData})
         } else {
             localStorage.clear();
             setIsAuth(false);

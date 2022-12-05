@@ -38,11 +38,13 @@ describe("Profile Tests", () => {
     });
     test("Renders user name in profile if signed in", () => {
         render(<ProfilePage currentUser={JohnUser}/>);
-        expect("John User").toBeInTheDocument();
+        const x = screen.queryByText("John User Profile");
+        expect(x).toBeInTheDocument();
     });
     test("Renders 'you are not signed in' if user is not signed in", () => {
         render(<ProfilePage currentUser={nullUser}/>);
-        expect("You are not signed in").toBeInTheDocument();
+        const x = screen.queryByText("You are not signed in");
+        expect(x).toBeInTheDocument();
     });
     test("Renders the createCourseLink component if the user has enough access level", () => {
         render(<ProfilePage currentUser={SuperUser}/>);

@@ -5,17 +5,17 @@ import {useNavigate} from "react-router-dom";
 import {db} from "../firebase-config";
 import { User } from '../interfaces/User';
 
-export function ProfileTitle(){
+export function ProfileTitle({currentUser} : {currentUser : User | null}){
     return <div className="text-3xl font-bold border-b-2 border-crt_BB_lightBlue" 
-        data-testid="profileTitleComponent">Profile</div>;
+        data-testid="profileTitleComponent">{currentUser? `${currentUser.name} Profile` : `You are not signed in`}</div>;
 }
 
-export function ProfileSideBar(){
+export function ProfileSideBar({currentUser} : {currentUser : User | null}){
     return <div className="flex border-r-2 border-crt_BB_lightBlue w-[200px]" 
         data-testid="profileSidebarComponent">Clickable</div>;
 }
 
-export function ProfileContent(){
+export function ProfileContent({currentUser} : {currentUser : User | null}){
     return <div data-testid="profileContentComponent">Content</div>
 }
 
@@ -26,12 +26,12 @@ function ProfilePage({currentUser}: {currentUser: User | null}){
         <div className="flex flex-row mt-4 w-3/4 rounded-md shadow-md items-stretch
             border-2 border-crt_BB_lightBlue">
             {/*Left side of profile component*/}
-            <ProfileSideBar />
+            <ProfileSideBar currentUser={currentUser}/>
 
             {/*Right side of profile component*/}
             <div className="w-full">
-                <ProfileTitle />
-                <ProfileContent />
+                <ProfileTitle currentUser={currentUser}/>
+                <ProfileContent currentUser={currentUser}/>
             </div>
         </div>
     </div>;
