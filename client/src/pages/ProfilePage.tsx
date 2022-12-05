@@ -11,12 +11,22 @@ export function ProfileTitle({currentUser} : {currentUser : User | null}){
 }
 
 export function ProfileSideBar({currentUser} : {currentUser : User | null}){
-    return <div className="flex border-r-2 border-crt_BB_lightBlue w-[200px]" 
-        data-testid="profileSidebarComponent">Clickable</div>;
+    return <div className="flex flex-col border-r-2 border-crt_BB_lightBlue w-[200px]" 
+        data-testid="profileSidebarComponent">
+            <div>Clickable Stuff</div>
+            {currentUser && currentUser.accessLevel > 3 ? <CreateCourseLink currentUser={currentUser}/> : ""}
+
+
+        </div>;
 }
 
 export function ProfileContent({currentUser} : {currentUser : User | null}){
     return <div data-testid="profileContentComponent">Content</div>
+}
+
+function CreateCourseLink({currentUser} : {currentUser: User | null}){
+    return <div data-testid="createCourseLink">Create Course</div> 
+
 }
 
 

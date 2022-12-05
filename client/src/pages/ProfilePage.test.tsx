@@ -53,8 +53,7 @@ describe("Profile Tests", () => {
     });
     test("Does not render createCourseLink if the user doesn't have enough access level", () => {
         render(<ProfilePage currentUser={JohnUser}/>);
-        const x = screen.getByTestId("createCourseLink");
-        expect(x).toNotBeInTheDocument();
+        expect(screen.queryByTestId(/createCourseLink/i)).toBeNull();
     });
 
 
