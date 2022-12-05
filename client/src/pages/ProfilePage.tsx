@@ -1,7 +1,9 @@
+import { Auth } from 'firebase/auth';
 import React, {useEffect, useState} from 'react';
 
 import {useNavigate} from "react-router-dom";
-import {auth, db} from "../firebase-config";
+import {db} from "../firebase-config";
+import { User } from '../interfaces/User';
 
 export function ProfileTitle(){
     return <div className="text-3xl font-bold border-b-2 border-crt_BB_lightBlue" 
@@ -19,7 +21,7 @@ export function ProfileContent(){
 
 
 
-function ProfilePage(){
+function ProfilePage({currentUser}: {currentUser: User | null}){
     return <div className="flex flex-col items-center">
         <div className="flex flex-row mt-4 w-3/4 rounded-md shadow-md items-stretch
             border-2 border-crt_BB_lightBlue">

@@ -17,7 +17,6 @@ import {User} from "../interfaces/User";
 
 
 function logout({setIsAuth, setUserData}: {setIsAuth: (isAuth: boolean) => void, setUserData: (userData: User | null) => void}){
-    setUserData(null);
     signOut(auth);
 }
 
@@ -38,6 +37,7 @@ export default function Navbar(){
         } else {
             localStorage.clear();
             setIsAuth(false);
+            setUserData(null);
         }
     });
 
@@ -71,7 +71,7 @@ export default function Navbar(){
             <Route path="/" element= {<HomePage></HomePage>}></Route>
             <Route path="/matchtest" element= {<MatchPage></MatchPage>}></Route>
             <Route path="/createReviewTest" element= {<CreateReview></CreateReview>}></Route>
-            <Route path="/profile" element={<ProfilePage></ProfilePage>}></Route>
+            <Route path="/profile" element={<ProfilePage currentUser={userData}></ProfilePage>}></Route>
         </Routes>
     </Router>
 }

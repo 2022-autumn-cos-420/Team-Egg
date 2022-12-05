@@ -49,7 +49,8 @@ function LoginWithGoogle({setIsAuth, setUserData, navigate} : {
         localStorage.setItem("isAuth","true");
         setIsAuth(true);
         firebaseUser({auth, c, setUserData}).then((result) => {
-            console.log("User Set")
+            console.log("User Set");
+            console.log(auth.currentUser?.uid);
         });
         navigate("/");
     });
