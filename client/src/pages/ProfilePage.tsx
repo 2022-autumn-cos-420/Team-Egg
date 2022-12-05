@@ -18,7 +18,6 @@ export function ProfileContent(){
 }
 
 
-
 function ProfilePage(){
     return <div className="flex flex-col items-center">
         <div className="flex flex-row mt-4 w-3/4 rounded-md shadow-md items-stretch
