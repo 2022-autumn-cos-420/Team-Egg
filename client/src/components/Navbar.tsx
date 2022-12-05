@@ -10,6 +10,7 @@ import FindMatch from "./Findmatch";
 import CreateReview from "../pages/CreateReview";
 import logo from  "../images/bbsLogo.png";
 import MatchPage from "../pages/MatchPage";
+import ProfilePage from "../pages/ProfilePage";
 import LoginLink from "./LoginLink";
 
 
@@ -25,8 +26,6 @@ export function SignedInMessage({isAuth , currentUser} : {isAuth: boolean, curre
 
 export default function Navbar(){
     const [isAuth, setIsAuth] = useState<boolean>(false);
-
-    
 
     onAuthStateChanged(auth, (user) => {
         if(user){
@@ -52,6 +51,7 @@ export default function Navbar(){
             <div className="w-full flex italic justify-around text-2xl space-x-6">
                 <Link to="/matchtest">Match Test</Link>
                 <Link to="/createReviewTest">Create Review Test</Link>
+                {isAuth ? <Link to="/profile">Profile</Link> : ""}
                 {!isAuth ? 
                 <LoginLink isAuth={isAuth} setIsAuth={setIsAuth}></LoginLink> :
                 <Link onClick={()=> {
@@ -65,9 +65,9 @@ export default function Navbar(){
             
         <Routes>
             <Route path="/" element= {<HomePage></HomePage>}></Route>
-            
             <Route path="/matchtest" element= {<MatchPage></MatchPage>}></Route>
             <Route path="/createReviewTest" element= {<CreateReview></CreateReview>}></Route>
+            <Route path="/profile" element={<ProfilePage></ProfilePage>}></Route>
         </Routes>
     </Router>
 }
