@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Button } from "react-bootstrap"
 import { Form } from "react-bootstrap";
+import {Review} from "../interfaces/Review";
 
 function LectureType(){
     return (
@@ -18,6 +19,7 @@ function LectureType(){
                 </form>
             </div>)
 }
+
 
 function ClassSize(){
     return(<div className = "mt-8">
@@ -177,6 +179,19 @@ function AdditionalComments(){
 }
 export default function CreateReview(): JSX.Element {
     const [page, setPage] = useState<number>(1);
+    const [uReview,setUReview] = useState<Review>({
+        lectureStyle: "",
+        classSize: "",
+        examDifficulty: "",
+        materialDifficulty: "",
+        amountOfTime: "",
+        courseEnjoyability: "",
+        completionStatus: "",
+        classGrade: "",
+        additionalComments: ""
+    })
+    const[uLectureType,setULectureType] = useState<string>("");
+    
     function nextPage(): void{
         setPage(page + 1);
     }
@@ -205,9 +220,18 @@ export default function CreateReview(): JSX.Element {
                 <CompletionStatus></CompletionStatus>
                 <ClassGrade></ClassGrade> 
                 <AdditionalComments></AdditionalComments>
-
+                <div className="flex flex-row w-full justify-between">
+                    <div className= "text-left">
+                        <Button onClick={previousPage} className= "m-4 bg-crt_BB_lightBlue hover:bg-crt_BB_darkBlue text-white font-bold py-2 px-4 rounded-full">Back</Button>
+                    </div>
+                    <div className= "text-right">
+                        <Button onClick={nextPage} className="m-4 bg-crt_BB_lightBlue hover:bg-crt_BB_darkBlue text-white font-bold py-2 px-4 rounded-full">Next</Button>
+                    </div>
+                </div>
+            </div>}
+            {(page == 3) && <div>
                 <div className= "text-left">
-                    <Button onClick={previousPage} className= "m-4 bg-crt_BB_lightBlue hover:bg-crt_BB_darkBlue text-white font-bold py-2 px-4 rounded-full">Back</Button>
+                        <Button onClick={previousPage} className= "m-4 bg-crt_BB_lightBlue hover:bg-crt_BB_darkBlue text-white font-bold py-2 px-4 rounded-full">Back</Button>
                 </div>
             </div>}
         </div>
