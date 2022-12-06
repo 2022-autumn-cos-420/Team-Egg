@@ -11,6 +11,8 @@ import CreateReview from "../pages/CreateReview";
 import logo from  "../images/bbsLogo.png";
 import MatchPage from "../pages/MatchPage";
 import ProfilePage from "../pages/ProfilePage";
+import CreateCoursePage from "../pages/CreateCoursePage";
+
 import LoginLink, {firebaseUser} from "./LoginLink";
 
 import {User} from "../interfaces/User";
@@ -70,6 +72,7 @@ export default function Navbar(){
             <Route path="/matchtest" element= {<MatchPage></MatchPage>}></Route>
             <Route path="/createReviewTest" element= {<CreateReview></CreateReview>}></Route>
             <Route path="/profile" element={<ProfilePage currentUser={userData}></ProfilePage>}></Route>
+            <Route path="/createCourse" element={<CreateCoursePage></CreateCoursePage>}></Route>
         </Routes>
     </Router>
 }
