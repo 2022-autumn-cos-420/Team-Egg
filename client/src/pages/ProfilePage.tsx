@@ -30,7 +30,6 @@ function CreateCourseLink({currentUser} : {currentUser: User | null}){
 }
 
 
-
 function ProfilePage({currentUser}: {currentUser: User | null}){
     return <div className="flex flex-col items-center">
         <div className="flex flex-row mt-4 w-3/4 rounded-md shadow-md items-stretch
