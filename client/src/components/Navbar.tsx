@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
-import {auth} from "../firebase-config";
+import {auth, db} from "../firebase-config";
 import {onAuthStateChanged, signOut} from 'firebase/auth';
 
 import HomePage from "../pages/HomePage";
@@ -11,31 +11,37 @@ import CreateReview from "../pages/CreateReview";
 import logo from  "../images/bbsLogo.png";
 import MatchPage from "../pages/MatchPage";
 import ProfilePage from "../pages/ProfilePage";
-import LoginLink from "./LoginLink";
+import CreateCoursePage from "../pages/CreateCoursePage";
+
+import LoginLink, {firebaseUser} from "./LoginLink";
+
+import {User} from "../interfaces/User";
 
 
-function logout({setIsAuth}: {setIsAuth: (isAuth: boolean) => void}){
+function logout(){
     signOut(auth);
 }
 
-export function SignedInMessage({isAuth , currentUser} : {isAuth: boolean, currentUser: string | null | undefined}){
+export function SignedInMessage({currentUser} : {currentUser: User | null}){
     return <div data-testid="signedInMessage" className="text-sm absolute right-5 bottom-1">
-        {isAuth? `Signed in as ${currentUser}`: "Not Signed In"}
+        {currentUser? `Signed in as ${currentUser.name}`: "Not Signed In"}
     </div>
 }
 
 export default function Navbar(){
-    const [isAuth, setIsAuth] = useState<boolean>(false);
+    const [userData, setUserData]= useState<User|null>(null)
 
+    
     onAuthStateChanged(auth, (user) => {
-        if(user){
+        console.log("auth change");
+        if(user && userData == null){
             localStorage.setItem("isAuth","true");
-            setIsAuth(true);
-        } else {
+            firebaseUser({auth, setUserData})
+        } else if(!user && userData != null){
+            setUserData(null);
             localStorage.clear();
-            setIsAuth(false);
         }
-    });
+    }); 
 
     return <Router>
         <nav className="relative p-4 items-center 
@@ -51,14 +57,14 @@ export default function Navbar(){
             <div className="w-full flex italic justify-around text-2xl space-x-6">
                 <Link to="/matchtest">Match Test</Link>
                 <Link to="/createReviewTest">Create Review Test</Link>
-                {isAuth ? <Link to="/profile">Profile</Link> : ""}
-                {!isAuth ? 
-                <LoginLink isAuth={isAuth} setIsAuth={setIsAuth}></LoginLink> :
+                {userData ? <Link to="/profile">Profile</Link> : ""}
+                {!userData ? 
+                <LoginLink setUserData={setUserData}></LoginLink> :
                 <Link onClick={()=> {
-                    logout({setIsAuth});
+                    logout();
                 }} to="/">Log Out</Link>
                 }
-                <SignedInMessage isAuth={isAuth} currentUser={auth.currentUser?.displayName}/>
+                <SignedInMessage currentUser={userData}/>
             </div>
         </div>
         </nav>
@@ -67,7 +73,8 @@ export default function Navbar(){
             <Route path="/" element= {<HomePage></HomePage>}></Route>
             <Route path="/matchtest" element= {<MatchPage></MatchPage>}></Route>
             <Route path="/createReviewTest" element= {<CreateReview></CreateReview>}></Route>
-            <Route path="/profile" element={<ProfilePage></ProfilePage>}></Route>
+            <Route path="/profile" element={<ProfilePage currentUser={userData}></ProfilePage>}></Route>
+            <Route path="/createCourse" element={<CreateCoursePage></CreateCoursePage>}></Route>
         </Routes>
     </Router>
 }

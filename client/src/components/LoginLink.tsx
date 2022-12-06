@@ -9,7 +9,7 @@ import { addDoc, getDocs, collection, query, where, CollectionReference, Documen
 
 async function createUser({auth, c}: {auth: Auth, c: CollectionReference<DocumentData>}){
     if(!auth.currentUser || !auth.currentUser.emailVerified || !auth.currentUser.email) return;
-    const u : User = {
+    const u = {
         uid: auth.currentUser.uid,
         eduEmail: auth.currentUser.email.endsWith(".edu"),
         preferences: [],
@@ -18,34 +18,51 @@ async function createUser({auth, c}: {auth: Auth, c: CollectionReference<Documen
     await addDoc(c, u);
 }
 
-async function firebaseUser({auth, c}: {auth: Auth, c: CollectionReference<DocumentData>}){
+export async function firebaseUser({auth, setUserData}: {auth: Auth, setUserData: (userData: User | null) => void}){    
+    const c = collection(db, "StandardUser");
     const user = await getDocs(query(c, where("uid", "==", auth.currentUser?.uid)));
+    let accessLevel :number = 0;
+    
     if (user.size === 0){
         await createUser({auth, c});
     } else {
-        console.log("user exists");
-    }
+        const aCheck = collection(db, "AdvancedUser");
+        const admin = await getDocs(query(aCheck, where("uid", "==", auth.currentUser?.uid)));
+        if (admin.size !== 0)
+            accessLevel = admin.docs[0].data().accessLevel;
+    } 
+    if (auth.currentUser && auth.currentUser.email && auth.currentUser.emailVerified){
+        setUserData({
+            uid: auth.currentUser.uid,
+            eduEmail: auth.currentUser.email.endsWith(".edu"),
+            preferences: [],
+            name: auth.currentUser.displayName,
+            accessLevel: accessLevel
+        });
+        console.log(accessLevel);
+    } 
+
 }
 
 
-function LoginWithGoogle({setIsAuth, navigate} : {setIsAuth: (isAuth: boolean) => void, 
-navigate: NavigateFunction}){
-    const c = collection(db, "StandardUser");
+function LoginWithGoogle({setUserData, navigate} : {
+    setUserData: (userData: User|null) => void,
+    navigate: NavigateFunction}){
     signInWithPopup(auth, provider).then((result) => {
         localStorage.setItem("isAuth","true");
-        setIsAuth(true);
-        firebaseUser({auth, c}).then((result) => {
-            
+        firebaseUser({auth, setUserData}).then((result) => {
+            console.log("User Set");
+            console.log(auth.currentUser?.uid);
         });
         navigate("/");
     });
 }
 
 
-function LoginLink({isAuth, setIsAuth} : {isAuth: boolean, setIsAuth: (isAuth: boolean) => void}){
+function LoginLink({setUserData} : {setUserData: (userData: User | null) => void}){
     let navigate = useNavigate();
     return <div className="cursor-pointer" onClick={() =>{
-        LoginWithGoogle({setIsAuth, navigate});
+        LoginWithGoogle({setUserData, navigate});
     }}>
         Log In
     </div>
