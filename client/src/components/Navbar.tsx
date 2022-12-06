@@ -31,15 +31,17 @@ export function SignedInMessage({currentUser} : {currentUser: User | null}){
 export default function Navbar(){
     const [userData, setUserData]= useState<User|null>(null)
 
+    
     onAuthStateChanged(auth, (user) => {
-        if(user){
+        console.log("auth change");
+        if(user && userData == null){
             localStorage.setItem("isAuth","true");
             firebaseUser({auth, setUserData})
-        } else {
-            localStorage.clear();
+        } else if(!user && userData != null){
             setUserData(null);
+            localStorage.clear();
         }
-    });
+    }); 
 
     return <Router>
         <nav className="relative p-4 items-center 

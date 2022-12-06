@@ -18,10 +18,11 @@ async function createUser({auth, c}: {auth: Auth, c: CollectionReference<Documen
     await addDoc(c, u);
 }
 
-export async function firebaseUser({auth, setUserData}: {auth: Auth, setUserData: (userData: User | null) => void}){
+export async function firebaseUser({auth, setUserData}: {auth: Auth, setUserData: (userData: User | null) => void}){    
     const c = collection(db, "StandardUser");
     const user = await getDocs(query(c, where("uid", "==", auth.currentUser?.uid)));
     let accessLevel :number = 0;
+    
     if (user.size === 0){
         await createUser({auth, c});
     } else {
@@ -29,15 +30,18 @@ export async function firebaseUser({auth, setUserData}: {auth: Auth, setUserData
         const admin = await getDocs(query(aCheck, where("uid", "==", auth.currentUser?.uid)));
         if (admin.size !== 0)
             accessLevel = admin.docs[0].data().accessLevel;
-    }
-    if (auth.currentUser && auth.currentUser.email && auth.currentUser.emailVerified)
-    setUserData({
-        uid: auth.currentUser.uid,
-        eduEmail: auth.currentUser.email.endsWith(".edu"),
-        preferences: [],
-        name: auth.currentUser.displayName,
-        accessLevel: accessLevel
-    });
+    } 
+    if (auth.currentUser && auth.currentUser.email && auth.currentUser.emailVerified){
+        setUserData({
+            uid: auth.currentUser.uid,
+            eduEmail: auth.currentUser.email.endsWith(".edu"),
+            preferences: [],
+            name: auth.currentUser.displayName,
+            accessLevel: accessLevel
+        });
+        console.log(accessLevel);
+    } 
+
 }
 
 

@@ -15,7 +15,7 @@ export function ProfileSideBar({currentUser} : {currentUser : User | null}){
         data-testid="profileSidebarComponent">
             <div>Clickable Stuff</div>
             {currentUser && currentUser.accessLevel > 3 ? <CreateCourseLink currentUser={currentUser}/> : ""}
-
+            
 
         </div>;
 }
@@ -25,7 +25,7 @@ export function ProfileContent({currentUser} : {currentUser : User | null}){
 }
 
 function CreateCourseLink({currentUser} : {currentUser: User | null}){
-    return <Link data-testid="createCourseLink" to="/createCourse"></Link> 
+    return <Link data-testid="createCourseLink" to="/createCourse">Create Course</Link> 
 
 }
 
