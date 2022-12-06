@@ -9,5 +9,33 @@ describe("CreateCoursePage Components Tests", () => {
         expect(x).toBeInTheDocument();
     });
 
-    
+    test("Course Title Component Renders", () => {
+        render(<CreateCoursePage />);
+        const x = screen.getByTestId("courseTitle");
+        expect(x).toBeInTheDocument();
+    });
+
+    test("Course Department Component Renders", () => {
+        render(<CreateCoursePage />);
+        const x = screen.getByTestId("courseDepartment");
+        expect(x).toBeInTheDocument();
+    });
+
+    test("Course Number Component Renders", () => {
+        render(<CreateCoursePage />);
+        const x = screen.getByTestId("courseNumber");
+        expect(x).toBeInTheDocument();
+    });
+
+    test("Course Describtion Component Renders", () => {
+        render(<CreateCoursePage />);
+        const x = screen.getByTestId("courseDesc");
+        expect(x).toBeInTheDocument();
+    });
+
+    test("Course CreditHours Component Renders", () => {
+        render(<CreateCoursePage />);
+        const x = screen.getByTestId("courseCreditHours");
+        expect(x).toBeInTheDocument();
+    });
 });
