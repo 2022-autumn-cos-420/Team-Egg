@@ -4,6 +4,6 @@ export interface Match {
     creditHoursAvailable: number,
     availability: MeetingTime[],
     notAvailable: boolean,
-    majorTypes: string[]
+    majorTypes: string[],
     hoursOfWork: number
 }

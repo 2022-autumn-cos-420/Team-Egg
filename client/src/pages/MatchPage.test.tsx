@@ -5,7 +5,7 @@ import MatchPage from './MatchPage'
 describe("Test", () => {
     test("Renders question 1", () => {
         render(<MatchPage/>);
-        const question1 = screen.getByText(/Select 3 majors you are interested in./i);
+        const question1 = screen.getByText("How many credit hours do you have available");
         expect(question1).toBeInTheDocument();
     });
 
