@@ -39,6 +39,24 @@ function CourseCode(
     </div>
 }
 
+function CourseNumber(
+    {courseNum, setCourseNum} :
+    {courseNum: number,
+        setCourseNum: (courseNum: number) => void}
+): JSX.Element {
+    return <div data-testid="courseNumber" className="flex flex-col">
+        <label htmlFor="postText" className="">Course Description</label>
+         <textarea className="p-1 text-black border-2 border-black" id="postText" placeholder="Course Description Text"
+            onChange={(e)=>{
+                const x = parseInt(e.target.value);
+                if(isNaN(x)) setCourseNum(0)
+                else setCourseNum(x)
+                }
+            } value={courseNum}></textarea>
+
+    </div>
+}
+
 
 
 function CreateCoursePage(): JSX.Element {
@@ -50,10 +68,10 @@ function CreateCoursePage(): JSX.Element {
 
     return <div data-testid="createCoursePage">
         <div>Create Course Page</div>
-        <CourseCode courseCode={courseCode} setCourseCode={setCourseCode}></CourseCode>
+        <CourseCode courseCode={courseCode} setCourseCode={setCourseCode} />
         <CourseTitle courseTitle={courseTitle} setCourseTitle={setCourseTitle} />
-        <CourseDesc courseDesc={courseDesc} setCourseDesc={setCourseDesc}></CourseDesc>
-
+        <CourseDesc courseDesc={courseDesc} setCourseDesc={setCourseDesc} />
+        <CourseNumber courseNum={courseNum} setCourseNum={setCourseNum} />
     </div>
 
 }
