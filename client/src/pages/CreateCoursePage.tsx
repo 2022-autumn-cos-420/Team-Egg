@@ -26,7 +26,18 @@ function CourseTitle(
     </div>
 }
 
+function CourseCode(
+    {courseCode, setCourseCode} :
+    {courseCode: string,
+    setCourseCode: (courseCode: string) => void}
+): JSX.Element {
+    return <div data-testid="courseDepartment" className="flex flex-col">
+        <label htmlFor="postText" className="">Course Description</label>
+         <textarea className="p-1 text-black border-2 border-black" id="postText" placeholder="Course Description Text"
+            onChange={(e)=>{setCourseCode(e.target.value)}} value={courseCode}></textarea>
 
+    </div>
+}
 
 
 
@@ -39,9 +50,10 @@ function CreateCoursePage(): JSX.Element {
 
     return <div data-testid="createCoursePage">
         <div>Create Course Page</div>
+        <CourseCode courseCode={courseCode} setCourseCode={setCourseCode}></CourseCode>
         <CourseTitle courseTitle={courseTitle} setCourseTitle={setCourseTitle} />
         <CourseDesc courseDesc={courseDesc} setCourseDesc={setCourseDesc}></CourseDesc>
-    
+
     </div>
 
 }
