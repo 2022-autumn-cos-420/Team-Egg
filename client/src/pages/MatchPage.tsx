@@ -66,16 +66,27 @@ export function MajorTypes({
     )
 }
 
-export function HoursOutsideClass(): JSX.Element {
+export function HoursOutsideClass({
+    hoursOutside,
+    setHoursOutside,
+}: {hoursOutside: number,
+    setHoursOutside: (hours: number) => void
+    }): JSX.Element {
     return(
         <div>
-        <p>Outside of class, how many hours are you willing to deidcate to your courses per week?</p>
-        <form>
-            <input type="radio" id="Yes" name="takenClass" value="Yes"></input>
-            <label htmlFor="Yes">Yes</label><br></br>
-            <input type="radio" id="No" name="takenClass" value="No"></input>
-            <label htmlFor="No">No</label><br></br>
-        </form>
+        <Form.Group controlId="formCreditHours">
+            <Form.Label><div>Outside of class, how many hours are you willing to deidcate to your courses per week?</div></Form.Label>
+                <Form.Control
+                className="border-2 border-black p-1 text-center rounded-md w-[50px]"
+                type="number"
+                value={hoursOutside}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    let x = parseInt(event.target.value)
+                isNaN(x) ? setHoursOutside(0) : setHoursOutside(x)
+                }
+            }
+      />
+    </Form.Group>
         </div>
     )
 }
@@ -108,7 +119,7 @@ export default function MatchPage(): JSX.Element {
     <div>
         <div hidden = {questionNumber !== 1} className = "mt-8"><CreditHoursAvailable creditHoursAvailable={creditHoursAvailable} setCreditHoursAvailable={setCreditHoursAvailable} /></div>
         <div hidden = {questionNumber !== 2} className = "mt-8"><MajorTypes majorsList={majors} setMajorsList={setMajors}/></div>
-        <div hidden = {questionNumber !== 3} className = "mt-8"><HoursOutsideClass/></div>
+        <div hidden = {questionNumber !== 3} className = "mt-8"><HoursOutsideClass hoursOutside={hoursOutside} setHoursOutside={setHoursOutside}/></div>
 
         <Button hidden = {questionNumber === 1 || submitted === true} className = "m-4 bg-crt_BB_lightBlue hover:bg-crt_BB_darkBlue text-white font-bold py-2 px-4 rounded-full" onClick = {() => previousQuestion()}>Previous</Button>
         <Button hidden = {questionNumber === 3 || submitted === true} className = "m-4 px-6 bg-crt_BB_lightBlue hover:bg-crt_BB_darkBlue text-white font-bold py-2 px-4 rounded-full" onClick = {() => nextQuestion()}>Next</Button>
