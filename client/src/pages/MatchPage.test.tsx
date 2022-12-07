@@ -11,8 +11,8 @@ describe("Test", () => {
 
     test("Renders question 2 on next button click", () => {
         render(<MatchPage/>);
-        const question1 = screen.queryByText(/Select 3 majors you are interested in./i);
-        const question2 = screen.queryByText("How many hours are you willing to dedicate per week?");
+        const question1 = screen.queryByText("How many credit hours do you have available");
+        const question2 = screen.queryByText("Select the majors you are interested in.");
         const nextButton = screen.getByRole("button", {name: "Next"});
 
         expect(question1).toBeInTheDocument();
