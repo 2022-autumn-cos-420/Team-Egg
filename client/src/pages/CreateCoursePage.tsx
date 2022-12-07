@@ -19,7 +19,7 @@ function CourseTitle(
     setCourseTitle: (courseTitle: string) => void}
 ): JSX.Element {
     return <div data-testid="courseTitle" className="flex flex-col">
-        <label htmlFor="postText" className="">Course Description</label>
+        <label htmlFor="postText" className="">Course Title</label>
          <textarea className="p-1 text-black border-2 border-black" id="postText" placeholder="Course Description Text"
             onChange={(e)=>{setCourseTitle(e.target.value)}} value={courseTitle}></textarea>
 
@@ -32,7 +32,7 @@ function CourseCode(
     setCourseCode: (courseCode: string) => void}
 ): JSX.Element {
     return <div data-testid="courseDepartment" className="flex flex-col">
-        <label htmlFor="postText" className="">Course Description</label>
+        <label htmlFor="postText" className="">Course Department (3 letters)</label>
          <textarea className="p-1 text-black border-2 border-black" id="postText" placeholder="Course Description Text"
             onChange={(e)=>{setCourseCode(e.target.value)}} value={courseCode}></textarea>
 
@@ -45,7 +45,7 @@ function CourseNumber(
         setCourseNum: (courseNum: number) => void}
 ): JSX.Element {
     return <div data-testid="courseNumber" className="flex flex-col">
-        <label htmlFor="postText" className="">Course Description</label>
+        <label htmlFor="postText" className="">Course Number</label>
          <textarea className="p-1 text-black border-2 border-black" id="postText" placeholder="Course Description Text"
             onChange={(e)=>{
                 const x = parseInt(e.target.value);
@@ -57,6 +57,23 @@ function CourseNumber(
     </div>
 }
 
+function CourseHours(
+    {courseHours, setCourseHours} :
+    {courseHours: number,
+        setCourseHours: (courseHours: number) => void}
+): JSX.Element {
+    return <div data-testid="courseCreditHours" className="flex flex-col">
+        <label htmlFor="postText" className="">Credit Hours</label>
+         <textarea className="p-1 text-black border-2 border-black" id="postText" placeholder="Course Description Text"
+            onChange={(e)=>{
+                const x = parseInt(e.target.value);
+                if(isNaN(x)) setCourseHours(0)
+                else setCourseHours(x)
+                }
+            } value={courseHours}></textarea>
+
+    </div>
+}
 
 
 function CreateCoursePage(): JSX.Element {
@@ -72,6 +89,7 @@ function CreateCoursePage(): JSX.Element {
         <CourseTitle courseTitle={courseTitle} setCourseTitle={setCourseTitle} />
         <CourseDesc courseDesc={courseDesc} setCourseDesc={setCourseDesc} />
         <CourseNumber courseNum={courseNum} setCourseNum={setCourseNum} />
+        <CourseHours courseHours={courseHours} setCourseHours={setCourseHours} />
     </div>
 
 }
