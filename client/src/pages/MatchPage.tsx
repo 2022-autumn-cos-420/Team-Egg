@@ -112,6 +112,14 @@ export default function MatchPage(): JSX.Element {
 
         nextQuestion();
         setSubmitted(true);
+
+        const finalMatchProps: Match = {
+            creditHoursAvailable: creditHoursAvailable,
+            availability: [],
+            notAvailable: false,
+            majorTypes: majors,
+            hoursOfWork: hoursOutside
+        }
     }
 
     return (
