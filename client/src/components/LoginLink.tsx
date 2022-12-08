@@ -4,7 +4,7 @@ import {Auth, signInWithPopup} from 'firebase/auth';
 import {auth, provider, db} from '../firebase-config';
 import {NavigateFunction, useNavigate} from 'react-router-dom';
 import {User} from "../interfaces/User";
-import { addDoc, getDocs, collection, query, where, CollectionReference, DocumentData } from 'firebase/firestore';
+import { addDoc, getDocs, collection, query, where, CollectionReference, DocumentData, doc, getDoc } from 'firebase/firestore';
 
 
 async function createUser({auth, c}: {auth: Auth, c: CollectionReference<DocumentData>}){
@@ -22,15 +22,13 @@ export async function firebaseUser({auth, setUserData}: {auth: Auth, setUserData
     const c = collection(db, "StandardUser");
     const user = await getDocs(query(c, where("uid", "==", auth.currentUser?.uid)));
     let accessLevel :number = 0;
-    
     if (user.size === 0){
         await createUser({auth, c});
-    } else {
-        const aCheck = collection(db, "AdvancedUser");
-        const admin = await getDocs(query(aCheck, where("uid", "==", auth.currentUser?.uid)));
-        if (admin.size !== 0)
-            accessLevel = admin.docs[0].data().accessLevel;
-    } 
+    } else if (auth.currentUser){
+        const aCheck = doc(db, "AdvancedUser", auth.currentUser.uid);
+        const admin = await getDoc(aCheck);
+        if (admin.exists())
+            accessLevel = admin.data().accessLevel;
     if (auth.currentUser && auth.currentUser.email && auth.currentUser.emailVerified){
         setUserData({
             uid: auth.currentUser.uid,
@@ -41,7 +39,7 @@ export async function firebaseUser({auth, setUserData}: {auth: Auth, setUserData
         });
         console.log(accessLevel);
     } 
-
+}
 }
 
 
