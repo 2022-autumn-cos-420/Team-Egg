@@ -39,6 +39,18 @@ describe("CreateCoursePage Components Tests", () => {
         expect(x).toBeInTheDocument();
     });
 
+    test("Course Year Component Renders", () => {
+        render(<CreateCoursePage />);
+        const x = screen.getByTestId("courseYear");
+        expect(x).toBeInTheDocument();
+    });
+
+    test("Course Semester Component Renders", () => {
+        render(<CreateCoursePage />);
+        const x = screen.getByTestId("courseSemester");
+        expect(x).toBeInTheDocument();
+    });
+
     test("Course Page Submit button renders" , () => {
         render(<CreateCoursePage />);
         const x = screen.getByTestId("courseSubmitButton");
