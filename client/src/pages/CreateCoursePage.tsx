@@ -20,7 +20,7 @@ function CourseTitle(
 ): JSX.Element {
     return <div data-testid="courseTitle" className="flex flex-col grow">
         <label htmlFor="postText" className="text-left">Course Title</label>
-         <input className="p-1 text-black border-2 border-black" id="postText" placeholder="Course Description Text"
+         <input className="p-1 text-black border-2 border-black" id="postText" placeholder="Course Title"
             onChange={(e)=>{setCourseTitle(e.target.value)}} value={courseTitle} />
 
     </div>
@@ -38,6 +38,40 @@ function CourseCode(
                 if(e.target.value.length <= 3)
                     setCourseCode(e.target.value.toLocaleUpperCase())
             }} value={courseCode}/>
+
+    </div>
+}
+
+function CourseYear(
+    {courseYear, setCourseYear} :
+    {courseYear: number,
+        setCourseYear: (courseYear: number) => void}
+): JSX.Element {
+    return <div data-testid="courseYear" className="flex flex-col">
+        <label htmlFor="postText" className="">Year</label>
+         <input className="p-1 text-black border-2 border-black" id="postText" placeholder="2023"
+            onChange={(e)=>{
+                const x = parseInt(e.target.value);
+                if(isNaN(x)) setCourseYear(2023)
+                else setCourseYear(x)
+                }
+            } value={courseYear}/>
+
+    </div>
+}
+
+function CourseSemester(
+    {courseSemester, setCourseSemester} :
+    {courseSemester: string,
+        setCourseSemester: (courseSemester: string) => void}
+): JSX.Element {
+    return <div data-testid="courseSemester" className="flex flex-col">
+        <label htmlFor="postText" className="">Semester</label>
+         <input className="p-1 text-black border-2 border-black" id="postText" placeholder="Fall"
+            onChange={(e)=>{
+                setCourseSemester(e.target.value.toLocaleUpperCase());
+                }
+            } value={courseSemester}/>
 
     </div>
 }
@@ -80,7 +114,21 @@ function CourseHours(
     </div>
 }
 
-function CourseSubmitButton(): JSX.Element {
+
+function CourseSubmitButton({
+    courseDesc, courseTitle, courseCode, courseNum, courseHours   
+}:{
+    courseDesc: string,
+    courseTitle: string,
+    courseCode: string,
+    courseNum: number,
+    courseHours: number
+}): JSX.Element {
+
+    const sendCourse = () => {
+
+    }
+
     return <button data-testid="courseSubmitButton" className="border-2 border-black cursor-pointer bg-crt_BB_grey italic hover:bg-crt_BB_lightBlue p-2 rounded-md">
         Submit
     </button>
@@ -92,6 +140,8 @@ function CreateCoursePage(): JSX.Element {
     const [courseTitle, setCourseTitle]  = useState<string>("");
     const [courseCode, setCourseCode]  = useState<string>("");
     const [courseNum, setCourseNum]  = useState<number>(0);
+    const [courseYear, setCourseYear]  = useState<number>(2023);
+    const [courseSemester, setCourseSemester]  = useState<string>("SPRING");
     const [courseHours, setCourseHours] = useState<number>(0);
 
     return <div data-testid="createCoursePage" className="flex flex-row justify-center">
@@ -100,6 +150,8 @@ function CreateCoursePage(): JSX.Element {
             <div className="flex flex-row space-x-2 justify-center">
                 <CourseCode courseCode={courseCode} setCourseCode={setCourseCode} />
                 <CourseNumber courseNum={courseNum} setCourseNum={setCourseNum} />
+                <CourseYear courseYear={courseYear} setCourseYear={setCourseYear} />
+                <CourseSemester courseSemester={courseSemester} setCourseSemester={setCourseSemester} />
             </div>
             <div className="flex flex-row space-x-2 justify-center">
                 <CourseTitle courseTitle={courseTitle} setCourseTitle={setCourseTitle} />
@@ -107,7 +159,7 @@ function CreateCoursePage(): JSX.Element {
             </div>
             <CourseDesc courseDesc={courseDesc} setCourseDesc={setCourseDesc} />
             <div className="text-left">
-                <CourseSubmitButton />
+                <CourseSubmitButton courseDesc= {courseDesc} courseTitle = {courseTitle} courseCode = {courseCode} courseNum = {courseNum} courseHours = {courseHours}/>
             </div> 
         </div>
     </div>
