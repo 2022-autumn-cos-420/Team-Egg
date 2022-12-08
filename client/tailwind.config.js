@@ -10,7 +10,7 @@ module.exports = {
         crt_BB_darkBlue: 'rgb(11, 11, 69)',
         crt_BB_white: 'rgb(255, 255, 255)',
         crt_BB_black: 'rgb(0,0,0)',
-        crt_BB_grey: 'rgb(178, 190, 181)'
+        crt_BB_grey: 'rgb(178, 178, 181)'
       }
     }
   },
