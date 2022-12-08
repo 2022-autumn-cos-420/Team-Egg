@@ -38,4 +38,10 @@ describe("CreateCoursePage Components Tests", () => {
         const x = screen.getByTestId("courseCreditHours");
         expect(x).toBeInTheDocument();
     });
+
+    test("Course Page Submit button renders" , () => {
+        render(<CreateCoursePage />);
+        const x = screen.getByTestId("courseSubmitButton");
+        expect(x).toBeInTheDocument();
+    });
 });
