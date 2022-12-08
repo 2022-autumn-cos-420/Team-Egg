@@ -80,6 +80,12 @@ function CourseHours(
     </div>
 }
 
+function CourseSubmitButton(): JSX.Element {
+    return <button data-testid="courseSubmitButton" className="border-2 border-black cursor-pointer bg-crt_BB_grey italic hover:bg-crt_BB_lightBlue p-2 rounded-md">
+        Submit
+    </button>
+}
+
 
 function CreateCoursePage(): JSX.Element {
     const [courseDesc, setCourseDesc]  = useState<string>("");
@@ -100,6 +106,9 @@ function CreateCoursePage(): JSX.Element {
                 <CourseHours courseHours={courseHours} setCourseHours={setCourseHours} />
             </div>
             <CourseDesc courseDesc={courseDesc} setCourseDesc={setCourseDesc} />
+            <div className="text-left">
+                <CourseSubmitButton />
+            </div> 
         </div>
     </div>
 
