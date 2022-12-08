@@ -48,7 +48,7 @@ export default function Navbar(){
         flex flex-col w-full justify-between min-w-fit
         bg-crt_BB_lightBlue text-white
         whitespace-nowrap">
-        <div className="flex flex-row items-cetner w-full justify-between">
+        <div className="flex flex-row items-center w-full justify-between">
             <div className="min-w-fit mr-2">
                 <Link to="/"><img className="w-[50px]" src={logo} alt="BlackBearSquare Logo"></img></Link>{/*logo spot */}
             </div>

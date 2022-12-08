@@ -6,7 +6,7 @@ function CourseDesc(
     setCourseDesc: (courseDesc: string) => void}
 ): JSX.Element {
     return <div data-testid="courseDesc" className="flex flex-col">
-        <label htmlFor="postText" className="">Course Description</label>
+        <label htmlFor="postText" className="text-left">Course Description</label>
          <textarea className="p-1 text-black border-2 border-black" id="postText" placeholder="Course Description Text"
             onChange={(e)=>{setCourseDesc(e.target.value)}} value={courseDesc}></textarea>
 
@@ -18,10 +18,10 @@ function CourseTitle(
     {courseTitle: string,
     setCourseTitle: (courseTitle: string) => void}
 ): JSX.Element {
-    return <div data-testid="courseTitle" className="flex flex-col">
-        <label htmlFor="postText" className="">Course Title</label>
-         <textarea className="p-1 text-black border-2 border-black" id="postText" placeholder="Course Description Text"
-            onChange={(e)=>{setCourseTitle(e.target.value)}} value={courseTitle}></textarea>
+    return <div data-testid="courseTitle" className="flex flex-col grow">
+        <label htmlFor="postText" className="text-left">Course Title</label>
+         <input className="p-1 text-black border-2 border-black" id="postText" placeholder="Course Description Text"
+            onChange={(e)=>{setCourseTitle(e.target.value)}} value={courseTitle} />
 
     </div>
 }
@@ -32,9 +32,12 @@ function CourseCode(
     setCourseCode: (courseCode: string) => void}
 ): JSX.Element {
     return <div data-testid="courseDepartment" className="flex flex-col">
-        <label htmlFor="postText" className="">Course Department (3 letters)</label>
-         <textarea className="p-1 text-black border-2 border-black" id="postText" placeholder="Course Description Text"
-            onChange={(e)=>{setCourseCode(e.target.value)}} value={courseCode}></textarea>
+        <label htmlFor="postText" className="">Department</label>
+         <input className="p-1 text-black border-2 border-black" id="postText" placeholder="COS"
+            onChange={(e)=>{
+                if(e.target.value.length <= 3)
+                    setCourseCode(e.target.value.toLocaleUpperCase())
+            }} value={courseCode}/>
 
     </div>
 }
@@ -46,13 +49,15 @@ function CourseNumber(
 ): JSX.Element {
     return <div data-testid="courseNumber" className="flex flex-col">
         <label htmlFor="postText" className="">Course Number</label>
-         <textarea className="p-1 text-black border-2 border-black" id="postText" placeholder="Course Description Text"
+         <input className="p-1 text-black border-2 border-black" id="postText" placeholder="Course Description Text"
             onChange={(e)=>{
                 const x = parseInt(e.target.value);
                 if(isNaN(x)) setCourseNum(0)
-                else setCourseNum(x)
+                else if(e.target.value.length <= 3){
+                        setCourseNum(x)
+                    }
                 }
-            } value={courseNum}></textarea>
+            } value={courseNum}/>
 
     </div>
 }
@@ -62,15 +67,15 @@ function CourseHours(
     {courseHours: number,
         setCourseHours: (courseHours: number) => void}
 ): JSX.Element {
-    return <div data-testid="courseCreditHours" className="flex flex-col">
+    return <div data-testid="courseCreditHours" className="flex flex-col grow-0 w-[100px]">
         <label htmlFor="postText" className="">Credit Hours</label>
-         <textarea className="p-1 text-black border-2 border-black" id="postText" placeholder="Course Description Text"
+         <input className="p-1 text-black border-2 border-black" id="postText" placeholder="Course Description Text"
             onChange={(e)=>{
                 const x = parseInt(e.target.value);
                 if(isNaN(x)) setCourseHours(0)
                 else setCourseHours(x)
                 }
-            } value={courseHours}></textarea>
+            } value={courseHours}/>
 
     </div>
 }
@@ -83,13 +88,19 @@ function CreateCoursePage(): JSX.Element {
     const [courseNum, setCourseNum]  = useState<number>(0);
     const [courseHours, setCourseHours] = useState<number>(0);
 
-    return <div data-testid="createCoursePage">
-        <div>Create Course Page</div>
-        <CourseCode courseCode={courseCode} setCourseCode={setCourseCode} />
-        <CourseTitle courseTitle={courseTitle} setCourseTitle={setCourseTitle} />
-        <CourseDesc courseDesc={courseDesc} setCourseDesc={setCourseDesc} />
-        <CourseNumber courseNum={courseNum} setCourseNum={setCourseNum} />
-        <CourseHours courseHours={courseHours} setCourseHours={setCourseHours} />
+    return <div data-testid="createCoursePage" className="flex flex-row justify-center">
+        <div className="flex flex-col w-3/4 space-y-2">
+            <div className="text-5xl mb-10 mt-5">Create Course Page</div>
+            <div className="flex flex-row space-x-2 justify-center">
+                <CourseCode courseCode={courseCode} setCourseCode={setCourseCode} />
+                <CourseNumber courseNum={courseNum} setCourseNum={setCourseNum} />
+            </div>
+            <div className="flex flex-row space-x-2 justify-center">
+                <CourseTitle courseTitle={courseTitle} setCourseTitle={setCourseTitle} />
+                <CourseHours courseHours={courseHours} setCourseHours={setCourseHours} />
+            </div>
+            <CourseDesc courseDesc={courseDesc} setCourseDesc={setCourseDesc} />
+        </div>
     </div>
 
 }
