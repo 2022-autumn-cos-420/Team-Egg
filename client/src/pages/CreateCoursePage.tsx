@@ -116,20 +116,27 @@ function CourseHours(
 
 
 function CourseSubmitButton({
-    courseDesc, courseTitle, courseCode, courseNum, courseHours   
+    courseDesc, courseTitle, courseCode, courseNum, courseHours, courseYear, courseSemester   
 }:{
     courseDesc: string,
     courseTitle: string,
     courseCode: string,
     courseNum: number,
-    courseHours: number
+    courseHours: number,
+    courseYear: number,
+    courseSemester: string
 }): JSX.Element {
 
     const sendCourse = () => {
-
+        if (courseDesc === "" ||
+            courseTitle === "" ||
+            courseCode === "" ||
+            courseNum === 0 ||
+            courseHours === 0)
+        window.alert("Don't leave any fields blank");
     }
 
-    return <button data-testid="courseSubmitButton" className="border-2 border-black cursor-pointer bg-crt_BB_grey italic hover:bg-crt_BB_lightBlue p-2 rounded-md">
+    return <button data-testid="courseSubmitButton" className="border-2 border-black cursor-pointer bg-crt_BB_grey italic hover:bg-crt_BB_lightBlue p-2 rounded-md" onClick={sendCourse}>
         Submit
     </button>
 }
@@ -159,7 +166,7 @@ function CreateCoursePage(): JSX.Element {
             </div>
             <CourseDesc courseDesc={courseDesc} setCourseDesc={setCourseDesc} />
             <div className="text-left">
-                <CourseSubmitButton courseDesc= {courseDesc} courseTitle = {courseTitle} courseCode = {courseCode} courseNum = {courseNum} courseHours = {courseHours}/>
+                <CourseSubmitButton courseYear= {courseYear} courseSemester= {courseSemester} courseDesc= {courseDesc} courseTitle = {courseTitle} courseCode = {courseCode} courseNum = {courseNum} courseHours = {courseHours}/>
             </div> 
         </div>
     </div>
