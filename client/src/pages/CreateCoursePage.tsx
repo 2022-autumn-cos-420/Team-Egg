@@ -1,4 +1,8 @@
+import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from "react";
+import {Course} from "../interfaces/Course";
+import {db} from "../firebase-config";
+import { useNavigate } from "react-router-dom";
 
 function CourseDesc(
     {courseDesc, setCourseDesc} :
@@ -127,13 +131,37 @@ function CourseSubmitButton({
     courseSemester: string
 }): JSX.Element {
 
+    const navigate = useNavigate();
+    const collectionRef = collection(db, "course");
+
     const sendCourse = () => {
         if (courseDesc === "" ||
             courseTitle === "" ||
             courseCode === "" ||
             courseNum === 0 ||
-            courseHours === 0)
-        window.alert("Don't leave any fields blank");
+            courseHours === 0 ||
+            courseSemester === "") {
+            window.alert("Don't leave any fields blank");
+            return;
+        }
+
+        const c : Course = {
+            title: courseTitle,
+            description: courseDesc,
+            creditHours: courseHours,
+            lectureTimes: [],
+            department: courseCode,
+            courseNumber: courseNum,
+            lectureType: "in person",
+            semester: courseSemester,
+            year: courseYear
+        }
+
+        addDoc(collectionRef, c).then(() => {
+                navigate("/");
+            }
+        );
+
     }
 
     return <button data-testid="courseSubmitButton" className="border-2 border-black cursor-pointer bg-crt_BB_grey italic hover:bg-crt_BB_lightBlue p-2 rounded-md" onClick={sendCourse}>
