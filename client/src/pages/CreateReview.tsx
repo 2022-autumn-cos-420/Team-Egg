@@ -303,19 +303,21 @@ export default function CreateReview(): JSX.Element {
                     </div>
                 </div>
             </div>}
-            {(page === 3) && <div>
+            {(page === 3) && <div className = "text-center">
+                <div className = "border-2 border-black border-solid w-fit flex flex-col">
+                    {uLectureType}
+                    {uClassSize}
+                    {uExamDiff}
+                    {uMaterialDiff}
+                    {uAmountTime}
+                    {uCourseE}
+                    {uCompStat}
+                    {uGrade}
+                    {uComments}
+                </div>
                 <div className= "text-left">
                         <Button onClick={previousPage} className= "m-4 bg-crt_BB_lightBlue hover:bg-crt_BB_darkBlue text-white font-bold py-2 px-4 rounded-full">Back</Button>
                 </div>
-                {uLectureType}
-                {uClassSize}
-                {uExamDiff}
-                {uMaterialDiff}
-                {uAmountTime}
-                {uCourseE}
-                {uCompStat}
-                {uGrade}
-                {uComments}
             </div>}
         </div>
     );
