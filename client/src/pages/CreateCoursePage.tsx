@@ -71,12 +71,14 @@ function CourseSemester(
 ): JSX.Element {
     return <div data-testid="courseSemester" className="flex flex-col">
         <label htmlFor="postText" className="">Semester</label>
-         <input className="p-1 text-black border-2 border-black" id="postText" placeholder="Fall"
-            onChange={(e)=>{
-                setCourseSemester(e.target.value.toLocaleUpperCase());
-                }
-            } value={courseSemester}/>
-
+        <div className="space-x-2 mt-1">
+            <input type="radio" id="fall" name="semester" value="FALL" onChange={(e) => setCourseSemester(e.target.value)} checked={courseSemester === "FALL"} />
+            <label htmlFor="fall">FALL</label>
+            <input type="radio" id="spring" name="semester" value="SPRING" onChange={(e) => setCourseSemester(e.target.value)} checked={courseSemester === "SPRING"} />
+            <label htmlFor="spring">SPRING</label>
+            <input type="radio" id="summer" name="semester" value="SUMMER" onChange={(e) => setCourseSemester(e.target.value)} checked={courseSemester === "SUMMER"} />
+            <label htmlFor="summer">SUMMER</label>
+        </div>
     </div>
 }
 
