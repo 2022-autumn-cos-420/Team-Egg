@@ -17,6 +17,10 @@ function logout({setIsAuth}: {setIsAuth: (isAuth: boolean) => void}){
     signOut(auth);
 }
 
+function MatchTestLink(){
+    return <Link to="/matchtest">Match Test</Link>
+}
+
 
 
 export default function Navbar(){
@@ -46,7 +50,7 @@ export default function Navbar(){
 
             {/*Menu items*/}
             <div className="w-full flex italic justify-around text-2xl space-x-6">
-                <Link to="/matchtest">Match Test</Link>
+                <MatchTestLink />
                 <Link to="/createReviewTest">Create Review Test</Link>
                 {!isAuth ? 
                 <LoginLink isAuth={isAuth} setIsAuth={setIsAuth}></LoginLink> :
