@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 describe("CreateCoursePage Components Tests", () => {
 
-    const setup = () => render(<BrowserRouter><CreateCoursePage /></BrowserRouter>);;
+    const setup = () => render(<BrowserRouter><CreateCoursePage /></BrowserRouter>);
 
     test("Main Containing Element renders", () => {
         setup();

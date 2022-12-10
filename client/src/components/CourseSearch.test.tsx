@@ -1,12 +1,13 @@
 import React from 'react';
 import { render, screen, fireEvent } from "@testing-library/react";
-import CourseSearch from './CourseSearch';
+import CourseSearch, {FetchCourseDataBase} from './CourseSearch';
+import Query from "../interfaces/Query";
+import Course from "../interfaces/Course";
+
 import { BrowserRouter } from 'react-router-dom';
 
 import {fakeCourses} from "../testdata/courseTestData";
-
-
-
+import {query1, query2, query3} from "../testdata/queryTestData";
 
 
 describe("CourseSearch Components Tests", () => {
@@ -14,7 +15,7 @@ describe("CourseSearch Components Tests", () => {
 
     test("Main Containing Element renders", () => {
         render(<BrowserRouter><CourseSearch courseList={[]}/></BrowserRouter>);
-        const x = screen.getByTestId("CourseSearchPage");
+        const x = screen.getByTestId("CourseSearchComponent");
         expect(x).toBeInTheDocument();
     });
 
@@ -47,4 +48,16 @@ describe("CourseSearch Components Tests", () => {
         expect(reviewListPage).toBeInTheDocument();
       });
       
+});
+
+describe("FetchCourseDataBase tests",() => {
+  test("An empty query list will return all courses", () => {
+      const expectedResultCount = 9;
+      const queries: Query[] = [];
+      const result = FetchCourseDataBase({queries});
+
+      expect(result).toHaveLength(expectedResultCount);
+  });
+
+
 });
