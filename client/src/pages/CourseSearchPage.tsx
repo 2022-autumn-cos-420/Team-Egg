@@ -1,4 +1,5 @@
 import React from "react";
+import CourseSearch, {FetchCourseDataBase} from "../components/CourseSearch";
 
 
 
@@ -6,7 +7,15 @@ import React from "react";
 
 
 export default function CourseSearchPage(): JSX.Element {
-    return <div></div>
+
+
+
+    return <div data-testid="CourseSearchPage">
+        
+        <CourseSearch courseList={[]}/>
+
+    
+    </div>
 
 
 }

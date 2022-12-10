@@ -10,7 +10,7 @@ export function FetchCourseDataBase({queries}: {queries: Query[]}){
 
 function CourseSearch({courseList}: {courseList: Course[]}): JSX.Element {
 
-    return <div>
+    return <div data-testid="CourseSearchComponent">
     </div>
 
 
