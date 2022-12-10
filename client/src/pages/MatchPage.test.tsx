@@ -5,18 +5,30 @@ import MatchPage from './MatchPage'
 describe("Test", () => {
     test("Renders question 1", () => {
         render(<MatchPage/>);
-        const question1 = screen.getByText(/Select 3 majors you are interested in./i);
+        const question1 = screen.getByText("How many credit hours do you have available?");
         expect(question1).toBeInTheDocument();
     });
 
     test("Renders question 2 on next button click", () => {
         render(<MatchPage/>);
-        const question1 = screen.queryByText(/Select 3 majors you are interested in./i);
-        const question2 = screen.queryByText("How many hours are you willing to dedicate per week?");
+        const question1 = screen.queryByText("How many credit hours do you have available?");
+        const question2 = screen.queryByText("Select the majors you are interested in.");
         const nextButton = screen.getByRole("button", {name: "Next"});
 
         expect(question1).toBeInTheDocument();
         nextButton.click();
         expect(question2).toBeInTheDocument();
     });
+
+    test("Renders submit button when showing last question", () => {
+        render(<MatchPage/>);
+        const nextButton = screen.getByRole("button", {name: "Next"});
+        const submitButton = screen.getByTestId("Submit Button");
+        nextButton.click();
+        nextButton.click();
+        //Theres only 3 questions so just click the next button twice
+
+        expect(submitButton).toBeInTheDocument();
+    })
+
 });
