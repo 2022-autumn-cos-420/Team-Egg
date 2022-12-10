@@ -1,4 +1,4 @@
-import {Course} from "../interfaces/Course";
+import Course from "../interfaces/Course";
 
 export const fakeCourses: Course[] = [
     {

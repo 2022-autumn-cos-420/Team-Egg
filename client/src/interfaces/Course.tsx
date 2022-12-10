@@ -1,6 +1,6 @@
 import { MeetingTime } from "./MeetingTime";
 
-export interface Course{
+export default interface Course{
     title: string,
     description: string,
     creditHours: number,
