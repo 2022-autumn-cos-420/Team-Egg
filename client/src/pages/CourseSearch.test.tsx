@@ -3,14 +3,22 @@ import { render, screen } from "@testing-library/react";
 import CourseSearch from './CourseSearch';
 import { BrowserRouter } from 'react-router-dom';
 
+import {fakeCourses} from "../testdata/courseTestData";
+
+
+
+
+
 describe("CourseSearch Components Tests", () => {
-    const setup = () => render(<BrowserRouter><CourseSearch /></BrowserRouter>);;
+
 
     test("Main Containing Element renders", () => {
-        setup();
+        render(<BrowserRouter><CourseSearch courses={[]}/></BrowserRouter>);
         const x = screen.getByTestId("CourseSearchPage");
         expect(x).toBeInTheDocument();
     });
+
+
 
 
 });

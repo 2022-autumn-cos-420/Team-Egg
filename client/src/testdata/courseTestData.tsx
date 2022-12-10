@@ -1,6 +1,6 @@
 import {Course} from "../interfaces/Course";
 
-const fakeCourses: Course[] = [
+export const fakeCourses: Course[] = [
     {
       title: "Introduction to Computer Science",
       description: "A course that introduces students to the world of computer science and programming.",
