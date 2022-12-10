@@ -27,7 +27,14 @@ To make well informed decisions, a student could find another student like them 
 ## Blackbear Square Initial Setup
  - Download Repository
  - install node on machine. https://nodejs.org/en/download/
- - run "npm install" in both client and api folders
- - install postgresql https://www.postgresql.org/download/
- - add postgres bin folder to PATH if on Windows
- - run db_setup.sql with the command "psql -U postgres -f ./db_setup.sql"
+ - run "npm install" in client folder
+ - create firebase account
+ - on firebase account set up log in with google authentication
+ - on firebase account set up a firestore database with the rules described in "firebaseRules.txt"
+ - paste configuration information into firebase-config.tsx located in client directory
+ - Run site and have administrators log into site for the first time to discover uid.
+ - On firebase server, look at StandardUser collection and note the uid user information. Ensure this matches up with what's printed on the console of the
+    client of the administrator.
+ - Create an AdvancedUser collection, each document should have a document id equal to the uid of the user it represents. Set the master administrator with
+     an accessLevel of 10 (see firebaseRules.txt for an example document of an administrator)
+ - refer to the accessLevelRules.txt to see what each access level allows.
