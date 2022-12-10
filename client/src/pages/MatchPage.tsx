@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap"
 export default function MatchPage(): JSX.Element {
     const [questionNumber, setQuestionNumber] = useState<number>(1);
     const [submitted, setSubmitted] = useState<boolean>(false);
+    const [deptList, setDeptList] = useState<string[]>([]);
 
     function nextQuestion(): void {
 
@@ -19,22 +20,53 @@ export default function MatchPage(): JSX.Element {
 
         nextQuestion();
         setSubmitted(true);
+
     }
 
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value, checked } = event.target;
+    
+        if (checked) {
+          setDeptList(deptList.concat(value));
+        } else {
+          setDeptList(deptList.filter((item) => item !== value));
+        }
+      };
     return (
     
     <div>
         
         <div hidden = {questionNumber !== 1} className = "mt-8">
         <p>Select 3 majors you are interested in.</p>
-        <form>
-            <input type="checkbox" id="COS" name="MajorType" value="COS"></input>
-            <label htmlFor="COS">COS</label><br></br>
-            <input type="checkbox" id="MAT" name="MajorType" value="COS"></input>
-            <label htmlFor="MAT">MAT</label><br></br>
-            <input type="checkbox" id="ENG" name="MajorType" value="ENG"></input>
-            <label htmlFor="ENG">ENG</label><br></br>
-        </form>
+      <form>
+        <input
+          type="checkbox"
+          id="COS"
+          name="MajorType"
+          value="COS"
+          onChange={handleCheckboxChange}
+        ></input>
+        <label htmlFor="COS">COS</label>
+        <br></br>
+        <input
+          type="checkbox"
+          id="MAT"
+          name="MajorType"
+          value="MAT"
+          onChange={handleCheckboxChange}
+        ></input>
+        <label htmlFor="MAT">MAT</label>
+        <br></br>
+        <input
+          type="checkbox"
+          id="ENG"
+          name="MajorType"
+          value="ENG"
+          onChange={handleCheckboxChange}
+        ></input>
+        <label htmlFor="ENG">ENG</label>
+        <br></br>
+      </form>
     </div>
 
         <div hidden = {questionNumber !== 2} className = "mt-8">

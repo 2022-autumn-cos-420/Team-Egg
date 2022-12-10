@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import CourseSearch, {FetchCourseDataBase} from "../components/CourseSearch";
+import {useLocation} from 'react-router-dom';
 
 
 
@@ -7,8 +8,11 @@ import CourseSearch, {FetchCourseDataBase} from "../components/CourseSearch";
 
 
 export default function CourseSearchPage(): JSX.Element {
+    const location = useLocation();
 
-
+    useEffect(() => {
+        console.log(location);
+    }, []);
 
     return <div data-testid="CourseSearchPage">
         
