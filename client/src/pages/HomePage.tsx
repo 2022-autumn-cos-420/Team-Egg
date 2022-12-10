@@ -21,7 +21,7 @@ function HelpButton(): JSX.Element {
 
 function WelcomeMessage(): JSX.Element{
   return <div>
-    <div className="text-4xl text-center absolute inset-80 font-bold font-sans" >Hope your day is as bright as your future!</div>
+    <div className="text-4xl text-center absolute inset-80 font-bold font-sans" data-testid="welcomeMessage" >Hope your day is as bright as your future!</div>
 </div>
 }
 
