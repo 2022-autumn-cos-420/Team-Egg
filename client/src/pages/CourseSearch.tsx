@@ -1,6 +1,10 @@
 import React from "react";
+import {Course} from "../interfaces/Course"; 
 
-function CourseSearch(): JSX.Element {
+
+
+
+function CourseSearch({courseList}: {courseList: Course[]}): JSX.Element {
 
     return <div>
     </div>
