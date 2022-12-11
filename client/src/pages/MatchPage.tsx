@@ -124,9 +124,22 @@ export default function MatchPage(): JSX.Element {
             majorTypes: majors,
             hoursOfWork: hoursOutside
         }
-        const searchString = 
+        let searchString = "";
+        if(finalMatchProps.majorTypes.length > 0){
+            searchString += "majors=";
+            for(let i = 0; i < finalMatchProps.majorTypes.length; i++){
+                searchString += finalMatchProps.majorTypes[i];
+                if (i < finalMatchProps.majorTypes.length-1)
+                    searchString += ",";
+            }
+            searchString += "&";
+        }
+        searchString += `ch=${finalMatchProps.creditHoursAvailable}`;
 
-        navigate("/courseSearch?");
+        //Add other parts later
+
+
+        navigate(`/courseSearch?${searchString}`);
     }
 
     return (
