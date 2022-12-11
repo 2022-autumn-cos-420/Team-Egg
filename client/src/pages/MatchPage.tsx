@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Form, FormCheck } from "react-bootstrap"
+import { useNavigate } from 'react-router-dom'
 import { Match } from '../interfaces/Match'
 
 const ALL_MAJORS = ["COS", "MAT", "ENG", "NMD", "PHY", "CHY", "ECO", "PSY", "EDU", "FSN", "NUR", "POS"]
@@ -48,20 +49,22 @@ export function MajorTypes({
     return(
         <div>
         <h3>Select the majors you are interested in.</h3>
-        <Form.Group controlId="desiredMajors">
+        <div>
             {ALL_MAJORS.map((major: string) => (
-                <FormCheck
-                className="p-1"
-                key={major}
-                type="checkbox"
-                name="major"
-                value={major}
-                label={major}
-                onChange={updateList}
-                checked={majorsList.includes(major)}
-                />  
+                 <div>
+                 <input
+                     className="p-1"
+                     key= {major}
+                     type="checkbox"
+                     name="major"
+                     value= {major}
+                     onChange={updateList}
+                     checked={majorsList.includes(major)}
+                 />  
+                 <label>{major}</label>
+                </div>
             ))}
-            </Form.Group>
+            </div>
         </div>
     )
 }
@@ -98,6 +101,7 @@ export default function MatchPage(): JSX.Element {
     const [majors, setMajors] = useState<string[]>([]);
     const [hoursOutside, setHoursOutside] = useState<number>(0);
 
+    let navigate = useNavigate();
     function nextQuestion(): void {
 
         setQuestionNumber(questionNumber + 1);
@@ -109,7 +113,7 @@ export default function MatchPage(): JSX.Element {
     }
 
     function handleSubmit(): void {
-
+        
         nextQuestion();
         setSubmitted(true);
 
@@ -120,6 +124,9 @@ export default function MatchPage(): JSX.Element {
             majorTypes: majors,
             hoursOfWork: hoursOutside
         }
+        const searchString = 
+
+        navigate("/courseSearch?");
     }
 
     return (

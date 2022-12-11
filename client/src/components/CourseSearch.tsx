@@ -11,6 +11,7 @@ export function FetchCourseDataBase({queries}: {queries: Query[]}){
 function CourseSearch({courseList}: {courseList: Course[]}): JSX.Element {
 
     return <div data-testid="CourseSearchComponent">
+        This is a test
     </div>
 
 
