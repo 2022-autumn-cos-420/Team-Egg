@@ -31,7 +31,7 @@ describe("CourseSearchPage Components Tests", () => {
             {  
                 field: "creditHours",
                 compare: "<=",
-                search: "10"
+                search: 10
             }
         ];
 
@@ -58,7 +58,7 @@ describe("CourseSearchPage Components Tests", () => {
             {  
                 field: "creditHours",
                 compare: "<=",
-                search: "4"
+                search: 4
             }
         ];
 

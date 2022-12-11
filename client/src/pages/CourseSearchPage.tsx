@@ -13,19 +13,17 @@ export function parseQuery(searchQuery: string) : Query[]{
 
     if(majorStringList != null){
         const majorList = majorStringList.split(",")
-        for(let i = 0; i < majorList.length; i++){
-            queryList.push({  
-                field: "department",
-                compare: "==",
-                search: majorList[i]
-            });
-        }
+        queryList.push({  
+            field: "department",
+            compare: "in",
+            search: majorList
+        });
     }
     if(chString != null){
         queryList.push({
             field: "creditHours",
             compare: "<=",
-            search: chString
+            search: parseInt(chString)
         });
     }
     return queryList;
@@ -44,9 +42,9 @@ export default function CourseSearchPage(): JSX.Element {
 
         const fetchData = async() => {
             tempCourse = await FetchCourseDataBase(queryList);
+            setCourseList(tempCourse);
         }
         fetchData().catch(console.error);
-        console.log(tempCourse);
     
     }, []);
 

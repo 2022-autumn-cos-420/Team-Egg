@@ -49,15 +49,3 @@ describe("CourseSearch Components Tests", () => {
       });
       
 });
-
-describe("FetchCourseDataBase tests",() => {
-  test("An empty query list will return all courses", async () => {
-      const expectedResultCount = 9;
-      const queries: Query[] = [];
-      const result: Course[] = await FetchCourseDataBase(queries);
-
-      expect(result).toHaveLength(expectedResultCount);
-  });
-
-
-});

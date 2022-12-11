@@ -1,5 +1,5 @@
 export default interface Query {
     field: string;
-    compare: "contains" | "startsWith" | "equals" | "<" | "<=" | ">" | ">=" | "==";
-    search: string;
+    compare:  "<" | "<=" | ">" | ">=" | "==" | "in";
+    search: string | string[] | number;
   }
