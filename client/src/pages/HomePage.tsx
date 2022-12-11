@@ -9,7 +9,7 @@ function HelpPage(): JSX.Element{
 
 
 function HelpButton(): JSX.Element {
-  return <div className="cursor-pointer">
+  return <div className="cursor-pointer" data-testid="helpButton">
     <div className="bg-white text-center py-4 lg:px-4 absolute bottom-0 left-0">
     <div className="p-2 bg-crt_BB_darkBlue items-center text-white leading-none lg:rounded-full flex lg:inline-flex" role="alert">
       <span className="text-lg flex rounded-full bg-crt_BB_lightBlue uppercase px-3.5 py-1 text-L font-bold mr-3">?</span>
@@ -27,7 +27,7 @@ function WelcomeMessage(): JSX.Element{
 
 function SearchBar(): JSX.Element{
   return <div>
-    <div className="pt-2 relative mx-auto text-gray-600 absolute inset-80 left-0">
+    <div className="pt-2 relative mx-auto text-gray-600 absolute inset-80 left-0" data-testid="searchBar">
       <input className="border-2 border-crt_BB_black bg-crt_BB_white h-10 px-5 pr-20 rounded-lg text-sm focus:outline-none"
             placeholder="Enter University here"/>
       <button type="submit" className="relative right-[59px] top-[1px] mt-5 mr-4 bg-crt_BB_lightBlue rounded-md p-1 text-black">
