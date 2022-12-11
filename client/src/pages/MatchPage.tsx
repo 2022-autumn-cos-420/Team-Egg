@@ -47,21 +47,21 @@ export function MajorTypes({
         }
 
     return(
-        <div>
+        <div className="flex flex-col">
         <h3>Select the majors you are interested in.</h3>
-        <div>
+        <div className="flex flex-col items-center">
             {ALL_MAJORS.map((major: string) => (
-                 <div>
-                 <input
-                     className="p-1"
-                     key= {major}
-                     type="checkbox"
-                     name="major"
-                     value= {major}
-                     onChange={updateList}
-                     checked={majorsList.includes(major)}
-                 />  
-                 <label>{major}</label>
+                 <div className="w-[70px] flex flex-row justify-between">
+                    <label className="text-right">{major}</label>
+                    <input
+                        className="text-left"
+                        key= {major}
+                        type="checkbox"
+                        name="major"
+                        value= {major}
+                        onChange={updateList}
+                        checked={majorsList.includes(major)}
+                    />  
                 </div>
             ))}
             </div>
