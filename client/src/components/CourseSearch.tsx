@@ -2,7 +2,7 @@ import React from "react";
 import Course from "../interfaces/Course";
 import Query from "../interfaces/Query"; 
 
-export function FetchCourseDataBase({queries}: {queries: Query[]}){
+export async function FetchCourseDataBase(queries: Query[]){
 
     return [];
 }
