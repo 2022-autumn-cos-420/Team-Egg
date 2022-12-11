@@ -52,7 +52,7 @@ export function MajorTypes({
         <h3>Select the majors you are interested in.</h3>
         <div className="flex flex-col items-center">
             {ALL_MAJORS.map((major: string) => (
-                 <div className="w-[70px] flex flex-row justify-between">
+                 <div key={major} className="w-[70px] flex flex-row justify-between">
                     <label className="text-right">{major}</label>
                     <input
                         className="text-left"
