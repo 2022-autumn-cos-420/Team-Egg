@@ -1,5 +1,6 @@
 import { collection, getDocs, query, where} from "firebase/firestore";
 import React from "react";
+import { JsxEmit } from "typescript";
 import { db } from "../firebase-config";
 import Course from "../interfaces/Course";
 import Query from "../interfaces/Query"; 
@@ -33,7 +34,17 @@ export async function FetchCourseDataBase(queries: Query[]){
 function CourseSearch({courseList}: {courseList: Course[]}): JSX.Element {
 
     return <div data-testid="CourseSearchComponent">
-        This is a test
+        {courseList.map((c :Course) => {
+            {/* Loop through course list, creating a clickable course for each one*/}
+            return <div key={c.docId}>
+                    <div>
+                        <div>{c.department} {c.courseNumber}</div>
+                        <div>{c.semester} {c.year}</div> 
+                    </div>
+                    <div>{c.title}</div>
+                    <div>{c.creditHours}</div>
+            </div>
+        })}
     </div>
 
 

@@ -50,7 +50,7 @@ export default function CourseSearchPage(): JSX.Element {
 
     return <div data-testid="CourseSearchPage">
         
-        <CourseSearch courseList={[]}/>
+        <CourseSearch courseList={courseList}/>
 
     
     </div>
