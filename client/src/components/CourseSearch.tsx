@@ -14,6 +14,7 @@ export async function FetchCourseDataBase(queries: Query[]){
     const data = await getDocs(q);
     const courseList : Course[] = data.docs.map((doc): Course => (
         {
+            docId: doc.id,
             title: doc.data().title,
             description: doc.data().description,
             creditHours: doc.data().creditHours,

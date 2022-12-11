@@ -1,6 +1,7 @@
 import { MeetingTime } from "./MeetingTime";
 
 export default interface Course{
+    docId: string,
     title: string,
     description: string,
     creditHours: number,

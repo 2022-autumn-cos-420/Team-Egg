@@ -147,7 +147,7 @@ function CourseSubmitButton({
             return;
         }
 
-        const c : Course = {
+        const c = {
             title: courseTitle,
             description: courseDesc,
             creditHours: courseHours,

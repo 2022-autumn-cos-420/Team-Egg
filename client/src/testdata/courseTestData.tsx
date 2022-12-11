@@ -2,6 +2,7 @@ import Course from "../interfaces/Course";
 
 export const fakeCourses: Course[] = [
     {
+      docId: "abc",
       title: "Introduction to Computer Science",
       description: "A course that introduces students to the world of computer science and programming.",
       creditHours: 9,
@@ -29,6 +30,7 @@ export const fakeCourses: Course[] = [
       year: 2022
     },
     {
+      docId: "abcd",
       title: "Data Structures and Algorithms",
       description: "A course that covers the fundamentals of data structures and algorithms.",
       creditHours: 4,
@@ -51,6 +53,7 @@ export const fakeCourses: Course[] = [
       year: 2022
     },
     {
+      docId: "bc",
       title: "Computer Architecture and Organization",
       description: "A course that covers the fundamental principles of computer architecture and organization.",
       creditHours: 3,
