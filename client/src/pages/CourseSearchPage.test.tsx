@@ -42,18 +42,8 @@ describe("CourseSearchPage Components Tests", () => {
         const expectedResult : Query[] = [
             {  
                 field: "department",
-                compare: "==",
-                search: "COS"
-            },
-            {  
-                field: "department",
-                compare: "==",
-                search: "PHY"
-            },
-            {  
-                field: "department",
-                compare: "==",
-                search: "CHY"
+                compare: "in",
+                search: ["COS","PHY","CHY"]
             },
             {  
                 field: "creditHours",
