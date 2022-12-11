@@ -56,7 +56,6 @@ export function MajorTypes({
                     <label className="text-right">{major}</label>
                     <input
                         className="text-left"
-                        key= {major}
                         type="checkbox"
                         name="major"
                         value= {major}
