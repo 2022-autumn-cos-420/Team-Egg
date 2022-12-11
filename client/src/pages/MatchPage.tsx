@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Form, FormCheck } from "react-bootstrap"
+import { act } from 'react-dom/test-utils'
 import { useNavigate } from 'react-router-dom'
 import { Match } from '../interfaces/Match'
 
@@ -103,13 +104,15 @@ export default function MatchPage(): JSX.Element {
 
     let navigate = useNavigate();
     function nextQuestion(): void {
-
-        setQuestionNumber(questionNumber + 1);
+        act(() => {
+            setQuestionNumber(questionNumber + 1);
+        });
     }
 
     function previousQuestion(): void {
-
-        setQuestionNumber(questionNumber - 1);
+        act(() => {
+            setQuestionNumber(questionNumber - 1);
+        });
     }
 
     function handleSubmit(): void {

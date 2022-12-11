@@ -4,9 +4,30 @@ import {useLocation} from 'react-router-dom';
 import Query from "../interfaces/Query";
 
 export function parseQuery(searchQuery: string) : Query[]{
+    const searchParams = new URLSearchParams(searchQuery);
 
+    let queryList :Query[] = [];
+    let majorStringList = searchParams.get("majors");
+    let chString = searchParams.get("ch")
 
-    return [];
+    if(majorStringList != null){
+        const majorList = majorStringList.split(",")
+        for(let i = 0; i < majorList.length; i++){
+            queryList.push({  
+                field: "department",
+                compare: "==",
+                search: majorList[i]
+            });
+        }
+    }
+    if(chString != null){
+        queryList.push({
+            field: "creditHours",
+            compare: "<=",
+            search: chString
+        });
+    }
+    return queryList;
 }
 
 
@@ -16,7 +37,6 @@ export default function CourseSearchPage(): JSX.Element {
     const location = useLocation();
 
     useEffect(() => {
-        const searchParams = new URLSearchParams(location.search);
         console.log(location.search);
     }, []);
 
