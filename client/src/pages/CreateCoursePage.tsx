@@ -1,6 +1,6 @@
 import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from "react";
-import {Course} from "../interfaces/Course";
+import Course from "../interfaces/Course";
 import {db} from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 
@@ -147,7 +147,7 @@ function CourseSubmitButton({
             return;
         }
 
-        const c : Course = {
+        const c = {
             title: courseTitle,
             description: courseDesc,
             creditHours: courseHours,

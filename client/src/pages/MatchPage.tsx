@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Form, FormCheck } from "react-bootstrap"
+import { act } from 'react-dom/test-utils'
+import { useNavigate } from 'react-router-dom'
 import { Match } from '../interfaces/Match'
 
 const ALL_MAJORS = ["COS", "MAT", "ENG", "NMD", "PHY", "CHY", "ECO", "PSY", "EDU", "FSN", "NUR", "POS"]
@@ -46,22 +48,23 @@ export function MajorTypes({
         }
 
     return(
-        <div>
-        <h3>Select the majors you are interested in.</h3>
-        <Form.Group controlId="desiredMajors">
+        <div className="flex flex-col">
+        <h3>Select the majors you are interested in. Leave all unselected to get all majors</h3>
+        <div className="flex flex-col items-center">
             {ALL_MAJORS.map((major: string) => (
-                <FormCheck
-                className="p-1"
-                key={major}
-                type="checkbox"
-                name="major"
-                value={major}
-                label={major}
-                onChange={updateList}
-                checked={majorsList.includes(major)}
-                />  
+                 <div key={major} className="w-[70px] flex flex-row justify-between">
+                    <label className="text-right">{major}</label>
+                    <input
+                        className="text-left"
+                        type="checkbox"
+                        name="major"
+                        value= {major}
+                        onChange={updateList}
+                        checked={majorsList.includes(major)}
+                    />  
+                </div>
             ))}
-            </Form.Group>
+            </div>
         </div>
     )
 }
@@ -98,18 +101,21 @@ export default function MatchPage(): JSX.Element {
     const [majors, setMajors] = useState<string[]>([]);
     const [hoursOutside, setHoursOutside] = useState<number>(0);
 
+    let navigate = useNavigate();
     function nextQuestion(): void {
-
-        setQuestionNumber(questionNumber + 1);
+        act(() => {
+            setQuestionNumber(questionNumber + 1);
+        });
     }
 
     function previousQuestion(): void {
-
-        setQuestionNumber(questionNumber - 1);
+        act(() => {
+            setQuestionNumber(questionNumber - 1);
+        });
     }
 
     function handleSubmit(): void {
-
+        
         nextQuestion();
         setSubmitted(true);
 
@@ -120,6 +126,24 @@ export default function MatchPage(): JSX.Element {
             majorTypes: majors,
             hoursOfWork: hoursOutside
         }
+
+        let searchString = "";
+        if(finalMatchProps.majorTypes.length > 0){
+            searchString += "majors=";
+            for(let i = 0; i < finalMatchProps.majorTypes.length; i++){
+                searchString += finalMatchProps.majorTypes[i];
+                if (i < finalMatchProps.majorTypes.length-1)
+                    searchString += ",";
+            }
+            searchString += "&";
+        }
+        searchString += `ch=${finalMatchProps.creditHoursAvailable}`;
+
+        //Add other parts later
+
+
+        navigate(`/courseSearch?${searchString}`);
+
     }
 
     return (
