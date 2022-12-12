@@ -1,0 +1,7 @@
+accessLevel is used to determine the actions and visibility of elements on the site.
+
+If you're using firebaseRules.txt to set your database permissions for security, at minimum you must have at least
+an accessLevel of 4 to add courses to the course document.
+
+So far that's the only limiting factor but this accessLevel gives some flexiability to allow several different accessLevels
+to limit course addition, review removal, course removal, etc.
