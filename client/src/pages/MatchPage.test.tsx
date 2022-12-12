@@ -17,7 +17,7 @@ describe("Test", () => {
 
         expect(question1).toBeInTheDocument();
         nextButton.click();
-        const question2 = screen.queryByText(/how many hours are you willing to deidcate to your courses per week?/i);
+        const question2 = screen.queryByText(/how many hours are you willing to dedicate to your courses per week?/i);
         expect(question2).toBeInTheDocument();
     });
 
