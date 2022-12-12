@@ -78,7 +78,7 @@ export function HoursOutsideClass({
     return(
         <div>
         <Form.Group controlId="formCreditHours">
-            <Form.Label><div>Outside of class, how many hours are you willing to deidcate to your courses per week?</div></Form.Label>
+            <Form.Label><div>Outside of class, how many hours are you willing to dedicate to your courses per week?</div></Form.Label>
                 <Form.Control
                 className="border-2 border-black p-1 text-center rounded-md w-[50px]"
                 type="number"
