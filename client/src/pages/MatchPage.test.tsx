@@ -22,7 +22,7 @@ describe("Test", () => {
     });
 
     test("Renders submit button when showing last question", () => {
-        render(<MatchPage/>);
+        render(<BrowserRouter><MatchPage/></BrowserRouter>);
         const nextButton = screen.getByRole("button", {name: "Next"});
         const submitButton = screen.getByTestId("Submit Button");
         nextButton.click();
