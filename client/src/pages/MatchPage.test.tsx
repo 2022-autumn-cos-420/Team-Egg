@@ -20,4 +20,16 @@ describe("Test", () => {
         const question2 = screen.queryByText(/how many hours are you willing to deidcate to your courses per week?/i);
         expect(question2).toBeInTheDocument();
     });
+
+    test("Renders submit button when showing last question", () => {
+        render(<MatchPage/>);
+        const nextButton = screen.getByRole("button", {name: "Next"});
+        const submitButton = screen.getByTestId("Submit Button");
+        nextButton.click();
+        nextButton.click();
+        //Theres only 3 questions so just click the next button twice
+
+        expect(submitButton).toBeInTheDocument();
+    })
+
 });

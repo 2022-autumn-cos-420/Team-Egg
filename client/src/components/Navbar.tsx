@@ -24,11 +24,18 @@ function logout(){
     signOut(auth);
 }
 
+
+function MatchTestLink(){
+    return <Link to="/matchtest">Match Test</Link>
+}
+
+
 export function SignedInMessage({currentUser} : {currentUser: User | null}){
     return <div data-testid="signedInMessage" className="text-sm absolute right-5 bottom-1">
         {currentUser? `Signed in as ${currentUser.name}`: "Not Signed In"}
     </div>
 }
+
 
 export default function Navbar(){
     const [userData, setUserData]= useState<User|null>(null)
@@ -57,7 +64,7 @@ export default function Navbar(){
 
             {/*Menu items*/}
             <div className="w-full flex italic justify-around text-2xl space-x-6">
-                <Link to="/matchtest">Match Test</Link>
+                <MatchTestLink />
                 <Link to="/createReviewTest">Create Review Test</Link>
                 {userData ? <Link to="/profile">Profile</Link> : ""}
                 {!userData ? 

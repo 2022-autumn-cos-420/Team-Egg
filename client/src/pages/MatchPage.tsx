@@ -126,6 +126,7 @@ export default function MatchPage(): JSX.Element {
             majorTypes: majors,
             hoursOfWork: hoursOutside
         }
+
         let searchString = "";
         if(finalMatchProps.majorTypes.length > 0){
             searchString += "majors=";
@@ -142,6 +143,7 @@ export default function MatchPage(): JSX.Element {
 
 
         navigate(`/courseSearch?${searchString}`);
+
     }
 
     return (
