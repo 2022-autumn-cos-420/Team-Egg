@@ -49,7 +49,7 @@ export function MajorTypes({
 
     return(
         <div className="flex flex-col">
-        <h3>Select the majors you are interested in.</h3>
+        <h3>Select the majors you are interested in. Leave all unselected to get all majors</h3>
         <div className="flex flex-col items-center">
             {ALL_MAJORS.map((major: string) => (
                  <div key={major} className="w-[70px] flex flex-row justify-between">
