@@ -39,13 +39,25 @@ describe("CourseSearch Components Tests", () => {
         }
       });
       
+      //Had to take out test, jest was never changing the window.location.href when a link is clicked
+      //Used different method to test
+      /*
       test("ReviewListPage is displayed when ClickableCourse is clicked", () => {
         const courseList = fakeCourses;
         render(<BrowserRouter><CourseSearch courseList={courseList}/></BrowserRouter>);
-        const clickableCourse = screen.getByTestId("ClickableCourse");
-        fireEvent.click(clickableCourse);
-        const reviewListPage = screen.getByTestId("ReviewListPage");
-        expect(reviewListPage).toBeInTheDocument();
+        const clickableCourse = screen.getAllByTestId("ClickableCourse");
+        console.log(clickableCourse);
+        fireEvent.click(clickableCourse[0]);
+        expect(window.location.href).toMatch(/^http:\/\/localhost\/reviewView/);
+      });
+      */
+      test("All clickable courses has an href to the appropriate url", () => {
+        const courseList = fakeCourses;
+        render(<BrowserRouter><CourseSearch courseList={courseList}/></BrowserRouter>);
+        const clickableCourses = screen.getAllByTestId("ClickableCourse");
+        for (let i = 0; i < clickableCourses.length; i++){
+          expect(clickableCourses[i].getAttribute('href')).toBe(`/reviewView?cid=${courseList[i].docId}`);
+        }
       });
       
 });

@@ -17,6 +17,7 @@ import LoginLink, {firebaseUser} from "./LoginLink";
 
 import {User} from "../interfaces/User";
 import CourseSearchPage from "../pages/CourseSearchPage";
+import ReviewViewPage from "../pages/ReviewViewPage";
 
 
 function logout(){
@@ -77,6 +78,7 @@ export default function Navbar(){
             <Route path="/profile" element={<ProfilePage currentUser={userData}></ProfilePage>}></Route>
             <Route path="/createCourse" element={<CreateCoursePage></CreateCoursePage>}></Route>
             <Route path="/courseSearch" element={<CourseSearchPage />}></Route>
+            <Route path="/reviewView" element={<ReviewViewPage />}></Route>
         </Routes>
     </Router>
 }

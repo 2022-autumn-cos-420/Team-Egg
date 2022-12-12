@@ -37,20 +37,20 @@ function CourseSearch({courseList}: {courseList: Course[]}): JSX.Element {
         className="flex flex-col space-y-2 ml-2 mt-2">
         {courseList.map((c :Course) => {
             {/* Loop through course list, creating a clickable course for each one*/}
-            return <div data-testid="ClickableCourse" key={c.docId} 
+            return <a key={c.docId} data-testid="ClickableCourse" href={`/reviewView?cid=${c.docId}`}><div 
                 className="border-2 border-black w-1/2 rounded-xl 
                     shadow-lg flex flex-col cursor-pointer space-x-0
                     select-none hover:bg-gray-50"
                 >
                     <div className="flex flex-row text-3xl justify-between p-3">
                         <div>{c.department} {c.courseNumber}</div>
-                        <div>{c.semester} {c.year}</div> 
+                        <div>{c.semester} {c.year}</div>
                     </div>
                     <div className="flex flex-row text-2xl justify-between p-3">
                         <div className="text-left">{c.title}</div>
                         <div className="grow-0 w-[200px]">{c.creditHours} {c.creditHours === 1 ? "Credit Hour" : "Credit Hours"}</div>
                     </div>
-            </div>
+            </div></a>
         })}
         {courseList.length === 0 ? "No Courses Found" :""}
     </div>
