@@ -36,7 +36,7 @@ function CourseSearch({courseList}: {courseList: Course[]}): JSX.Element {
     return <div data-testid="CourseSearchComponent">
         {courseList.map((c :Course) => {
             {/* Loop through course list, creating a clickable course for each one*/}
-            return <div key={c.docId}>
+            return <div data-testid="ClickableCourse" key={c.docId}>
                     <div>
                         <div>{c.department} {c.courseNumber}</div>
                         <div>{c.semester} {c.year}</div> 
@@ -45,6 +45,7 @@ function CourseSearch({courseList}: {courseList: Course[]}): JSX.Element {
                     <div>{c.creditHours}</div>
             </div>
         })}
+        {courseList.length === 0 ? "No Courses Found" :""}
     </div>
 
 
