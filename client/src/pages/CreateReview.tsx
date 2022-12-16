@@ -287,7 +287,7 @@ export default function CreateReview(): JSX.Element {
                 <CourseEnjoyability uCourseE={uCourseE} setUCourseE={setUCourseE}></CourseEnjoyability>
 
                 <div className="text-right">
-                    <Button onClick={nextPage} className="m-4 bg-crt_BB_lightBlue hover:bg-crt_BB_darkBlue text-white font-bold py-2 px-4 rounded-full">Next</Button>
+                    <Button onClick={nextPage} data-testid = "ReviewNextButton1" className="m-4 bg-crt_BB_lightBlue hover:bg-crt_BB_darkBlue text-white font-bold py-2 px-4 rounded-full">Next</Button>
                 </div>
             </div>}
             {(page === 2) && <div>
@@ -299,7 +299,7 @@ export default function CreateReview(): JSX.Element {
                         <Button onClick={previousPage} className= "m-4 bg-crt_BB_lightBlue hover:bg-crt_BB_darkBlue text-white font-bold py-2 px-4 rounded-full">Back</Button>
                     </div>
                     <div className= "text-right">
-                        <Button onClick={nextPage} className="m-4 bg-crt_BB_lightBlue hover:bg-crt_BB_darkBlue text-white font-bold py-2 px-4 rounded-full">Next</Button>
+                        <Button onClick={nextPage} data-testid = "ReviewNextButton2" className="m-4 bg-crt_BB_lightBlue hover:bg-crt_BB_darkBlue text-white font-bold py-2 px-4 rounded-full">Next</Button>
                     </div>
                 </div>
             </div>}
